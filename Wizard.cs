@@ -1,12 +1,16 @@
 using Godot;
+using Godot.Collections;
 using System;
 using System.ComponentModel;
 using System.Diagnostics;
 
-public partial class Wizard : CharacterBody2D
+public partial class Wizard : CharacterBody2D, Alive
 {
 	[Export]
 	public float Speed = 300.0f;
+	[Export]
+	public Array<String> powers;
+	public String orb_type = "Normal";
 	private RigidBody2D Orb;
 	private Rope rope;
 	private Control UI;
@@ -18,6 +22,18 @@ public partial class Wizard : CharacterBody2D
 		rope = GetParent().GetNode<Rope>("Rope");
 		rope.create_rope(10, this.GetPath(), Orb.GetPath(), Position, Orb.Position);
 		UI = GetParent().GetNode("CanvasLayer").GetNode<Control>("UI");
+	}
+
+	public async void die()
+	{
+		Tween fade_out_tween = CreateTween();
+		fade_out_tween.TweenProperty(UI.GetNode<ColorRect>("Vignette"), "color:a", 1f, 1f);
+
+		PackedScene next = GD.Load<PackedScene>("death.tscn");
+
+		await ToSignal(fade_out_tween, Tween.SignalName.Finished);
+
+		GetTree().ChangeSceneToPacked(next);
 	}
 
     public override void _Process(double delta) // For visual stuff
@@ -44,5 +60,10 @@ public partial class Wizard : CharacterBody2D
 
 		Velocity = velocity;
 		MoveAndSlide();
+	}
+
+	public void update_powers() // None for now. Durable for extra health? Extra speed?
+	{
+		
 	}
 }

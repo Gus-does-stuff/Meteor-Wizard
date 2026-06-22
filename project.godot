@@ -11,13 +11,17 @@ config_version=5
 [application]
 
 config/name="Meteor Wizard"
-run/main_scene="uid://cbgtl28axmimt"
+run/main_scene="uid://deryibr62jopd"
 config/features=PackedStringArray("4.7", "C#", "GL Compatibility")
 config/icon="res://icon.svg"
 
 [dotnet]
 
 project/assembly_name="Meteor Wizard"
+
+[gui]
+
+theme/custom="uid://mbsg4xqnedxi"
 
 [input]
 

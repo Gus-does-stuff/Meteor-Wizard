@@ -1,0 +1,100 @@
+[gd_scene format=3 uid="uid://deryibr62jopd"]
+
+[ext_resource type="Script" uid="uid://cidmthnht4jys" path="res://Menu.cs" id="1_mae5d"]
+[ext_resource type="Script" uid="uid://cv3f1r2pxik1y" path="res://TitleScreen.cs" id="2_4hy44"]
+[ext_resource type="Script" uid="uid://da0fu57n8vtw6" path="res://MainMenu.cs" id="2_ytr4m"]
+[ext_resource type="Texture2D" uid="uid://bugtkmt1ud64m" path="res://Title-Card.png" id="3_ytr4m"]
+
+[node name="Menu" type="Control" unique_id=1452377926]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_mae5d")
+
+[node name="Vignette" type="ColorRect" parent="." unique_id=627018569]
+z_index = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 0)
+
+[node name="Main" type="Control" parent="." unique_id=1237665344]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+script = ExtResource("2_ytr4m")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Main" unique_id=231082864]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Run it!" type="Button" parent="Main/VBoxContainer" unique_id=1155793070]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+text = "Run the Gauntlet!"
+
+[node name="Arena" type="Button" parent="Main/VBoxContainer" unique_id=1863981122]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+text = "Arena"
+
+[node name="TitleScreen" type="Control" parent="." unique_id=2141000085]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+script = ExtResource("2_4hy44")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TitleScreen" unique_id=642071686]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="TitleScreen/VBoxContainer" unique_id=80132784]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+texture = ExtResource("3_ytr4m")
+
+[node name="Button" type="Button" parent="TitleScreen/VBoxContainer" unique_id=1707178304]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+text = "START"
+
+[node name="BGColor" type="ColorRect" parent="." unique_id=992256739]
+z_index = -1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.33333334, 0.18039216, 0.023529412, 1)
+
+[connection signal="button_up" from="Main/VBoxContainer/Run it!" to="Main" method="_on_run_it_button_up"]
+[connection signal="button_up" from="Main/VBoxContainer/Arena" to="Main" method="_on_arena_button_up"]
+[connection signal="button_up" from="TitleScreen/VBoxContainer/Button" to="TitleScreen" method="_on_start_game"]

@@ -16,14 +16,14 @@ public partial class Goblin : Mob
 		healthbar = GetNode<ProgressBar>("health");
 	}
 
-    public override void Damage(int damage, Vector2 velocity)
+    public override void Damage(float damage, Vector2 velocity)
     {
         health -= damage;
 		if(health <= 0)
 		{
-			this.Free();
+			this.die();
 		}
-		healthbar.Value -= damage*10;
+		healthbar.Value -= damage;
 		LinearVelocity += velocity*1.7f;
     }
 

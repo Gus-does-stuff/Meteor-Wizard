@@ -21,6 +21,7 @@ public partial class Rope : Node2D
 			segment_i.Name = "Segment " + i.ToString();
 			segment_i.CollisionLayer = 2;
 			segment_i.CollisionMask = 2;
+			segment_i.Mass = 0.1f;
 			AddChild(segment_i);
 			segments.Add(segment_i.GetPath());
 			CollisionShape2D segment_i_shape = new CollisionShape2D();

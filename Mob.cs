@@ -2,10 +2,10 @@ using Godot;
 using System;
 using System.ComponentModel;
 
-public abstract partial class Mob : RigidBody2D
+public abstract partial class Mob : RigidBody2D, Alive
 {
 	[Export]
-	public int health = 1;
+	public float health = 1;
 	[Export]
 	public int damage = 1;
 	[Export]
@@ -18,7 +18,12 @@ public abstract partial class Mob : RigidBody2D
 	// Called when the node enters the scene tree for the first time.
     public abstract void Behaviour();
     public abstract void Entry();
-    public abstract void Damage(int damage, Vector2 velocity);
+    public abstract void Damage(float damage, Vector2 velocity);
+
+    public void die()
+    {
+        this.Free(); // Add potential animation and sound here
+    }
 	public override void _Ready()
 	{
 		wizard = GetParent().GetNode<Wizard>("Wizard");

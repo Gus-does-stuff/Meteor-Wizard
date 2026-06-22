@@ -1,0 +1,80 @@
+[gd_scene format=3 uid="uid://cbgtl28axmimt"]
+
+[ext_resource type="PackedScene" uid="uid://ctntb0x7eceqi" path="res://wizard.tscn" id="1_ml6qp"]
+[ext_resource type="PackedScene" uid="uid://dmmlpw7mpkkpt" path="res://orb.tscn" id="2_8qske"]
+[ext_resource type="PackedScene" uid="uid://drc5o730yjrjj" path="res://rope.tscn" id="3_tu31c"]
+[ext_resource type="Script" uid="uid://ctju6nsjwf3jr" path="res://Spawner.cs" id="4_u21bi"]
+[ext_resource type="PackedScene" uid="uid://bet00p1ylurwk" path="res://goblin.tscn" id="5_18q8f"]
+[ext_resource type="Script" uid="uid://cxuri3y0i2tdx" path="res://Border.cs" id="6_1qmqq"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_lquwl"]
+bounce = 5.75
+
+[node name="Arena" type="Node2D" unique_id=1235424377]
+
+[node name="Wizard" parent="." unique_id=2005119280 instance=ExtResource("1_ml6qp")]
+powers = Array[String](["Bouncy Orb"])
+
+[node name="ORB" parent="." unique_id=479306263 instance=ExtResource("2_8qske")]
+position = Vector2(573, -4)
+mass = 2.0
+physics_material_override = SubResource("PhysicsMaterial_lquwl")
+gravity_scale = 0.0
+contact_monitor = true
+max_contacts_reported = 5
+
+[node name="Rope" parent="." unique_id=997918495 instance=ExtResource("3_tu31c")]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1884622442]
+
+[node name="UI" type="Control" parent="CanvasLayer" unique_id=1313006326]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Vignette" type="ColorRect" parent="CanvasLayer/UI" unique_id=639082538]
+z_index = 2
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0)
+
+[node name="VSlider" type="VSlider" parent="CanvasLayer/UI" unique_id=1602673351]
+visible = false
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -16.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="Spawner" type="Timer" parent="." unique_id=224719985]
+autostart = true
+script = ExtResource("4_u21bi")
+mobs = Array[PackedScene]([ExtResource("5_18q8f")])
+
+[node name="Area2D" type="Area2D" parent="." unique_id=450148386]
+script = ExtResource("6_1qmqq")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D" unique_id=633724047]
+polygon = PackedVector2Array(-111, -6584, 7854, -3823, 7764, 5772, -47, 8061, -7353, 5817, -7489, -3778)
+one_way_collision_direction = Vector2(0, -1)
+
+[node name="Line2D" type="Line2D" parent="Area2D" unique_id=802813464]
+points = PackedVector2Array(-111, -6584, 7854, -3823, 7764, 5772, -47, 8061, -7353, 5817, -7489, -3778)
+closed = true
+width = 50.0
+
+[connection signal="timeout" from="Spawner" to="Spawner" method="every_second"]
+[connection signal="body_exited" from="Area2D" to="Area2D" method="_on_body_exited"]
