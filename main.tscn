@@ -1,0 +1,50 @@
+[gd_scene format=3 uid="uid://cbgtl28axmimt"]
+
+[ext_resource type="PackedScene" uid="uid://ctntb0x7eceqi" path="res://wizard.tscn" id="2_h2yge"]
+[ext_resource type="PackedScene" uid="uid://drc5o730yjrjj" path="res://rope.tscn" id="3_1bvp3"]
+[ext_resource type="PackedScene" uid="uid://dmmlpw7mpkkpt" path="res://orb.tscn" id="3_h2yge"]
+[ext_resource type="Script" uid="uid://ctju6nsjwf3jr" path="res://Spawner.cs" id="5_lquwl"]
+[ext_resource type="PackedScene" uid="uid://bet00p1ylurwk" path="res://goblin.tscn" id="6_7mycd"]
+
+[node name="Node2D" type="Node2D" unique_id=1235424377]
+
+[node name="Wizard" parent="." unique_id=2005119280 instance=ExtResource("2_h2yge")]
+
+[node name="ORB" parent="." unique_id=479306263 instance=ExtResource("3_h2yge")]
+position = Vector2(573, -4)
+gravity_scale = 0.0
+contact_monitor = true
+max_contacts_reported = 5
+
+[node name="Rope" parent="." unique_id=997918495 instance=ExtResource("3_1bvp3")]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1884622442]
+
+[node name="UI" type="Control" parent="CanvasLayer" unique_id=1313006326]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="VSlider" type="VSlider" parent="CanvasLayer/UI" unique_id=1602673351]
+visible = false
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -16.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="Spawner" type="Timer" parent="." unique_id=224719985]
+autostart = true
+script = ExtResource("5_lquwl")
+mobs = Array[PackedScene]([ExtResource("6_7mycd")])
+
+[connection signal="timeout" from="Spawner" to="Spawner" method="every_second"]
