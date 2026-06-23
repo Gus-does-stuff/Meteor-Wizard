@@ -11,9 +11,19 @@ public partial class Wizard : CharacterBody2D, Alive
 	[Export]
 	public Array<String> powers;
 	public String orb_type = "Normal";
+	public float health = 100;
 	private RigidBody2D Orb;
 	private Rope rope;
 	private Control UI;
+
+	public void Damage(float damage)
+	{
+		health -= damage;
+		if (health <= 0)
+		{
+			die();
+		}
+	}
 
     public override void _Ready()
     {

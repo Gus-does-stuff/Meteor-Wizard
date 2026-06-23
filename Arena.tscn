@@ -68,11 +68,11 @@ mobs = Array[PackedScene]([ExtResource("5_18q8f")])
 script = ExtResource("6_1qmqq")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D" unique_id=633724047]
-polygon = PackedVector2Array(-111, -6584, 7854, -3823, 7764, 5772, -47, 8061, -7353, 5817, -7489, -3778)
+polygon = PackedVector2Array(10, -2631, 2590, -1273, 2635, 1804, 101, 3207, -2479, 1985, -2479, -1319)
 one_way_collision_direction = Vector2(0, -1)
 
 [node name="Line2D" type="Line2D" parent="Area2D" unique_id=802813464]
-points = PackedVector2Array(-111, -6584, 7854, -3823, 7764, 5772, -47, 8061, -7353, 5817, -7489, -3778)
+points = PackedVector2Array(10, -2631, 2590, -1273, 2635, 1804, 101, 3207, -2479, 1985, -2479, -1319)
 closed = true
 width = 50.0
 

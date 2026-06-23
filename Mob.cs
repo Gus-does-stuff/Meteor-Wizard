@@ -14,11 +14,12 @@ public abstract partial class Mob : RigidBody2D, Alive
     public float acceletation = 1;
 	[Export]
 	public float spawn_chance = 0.1f;
-	private Wizard wizard;
+	public Wizard wizard;
 	// Called when the node enters the scene tree for the first time.
     public abstract void Behaviour();
     public abstract void Entry();
     public abstract void Damage(float damage, Vector2 velocity);
+    public abstract void hit(Node body);
 
     public void die()
     {

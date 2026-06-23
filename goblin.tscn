@@ -25,3 +25,5 @@ offset_right = 52.0
 offset_bottom = -28.0
 max_value = 10.0
 value = 10.0
+
+[connection signal="body_entered" from="." to="." method="hit"]

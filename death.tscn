@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://os86coiv3h2v" path="res://Death.cs" id="1_lf77f"]
 [ext_resource type="Texture2D" uid="uid://4lgunbyewpmt" path="res://Death-Screen.png" id="2_531me"]
+[ext_resource type="AudioStream" uid="uid://bofiicj4c67xl" path="res://Music and Sound/Death.wav" id="3_531me"]
 
 [node name="Death" type="Control" unique_id=2145881185]
 layout_mode = 3
@@ -46,5 +47,10 @@ texture = ExtResource("2_531me")
 [node name="Button" type="Button" parent="VBoxContainer" unique_id=1095564482]
 layout_mode = 2
 text = "Yes!"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=237450191]
+stream = ExtResource("3_531me")
+volume_db = 10.0
+autoplay = true
 
 [connection signal="button_up" from="VBoxContainer/Button" to="." method="Continue"]
