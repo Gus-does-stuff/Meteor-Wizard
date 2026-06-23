@@ -6,9 +6,13 @@
 [ext_resource type="Script" uid="uid://ctju6nsjwf3jr" path="res://Spawner.cs" id="4_u21bi"]
 [ext_resource type="PackedScene" uid="uid://bet00p1ylurwk" path="res://goblin.tscn" id="5_18q8f"]
 [ext_resource type="Script" uid="uid://cxuri3y0i2tdx" path="res://Border.cs" id="6_1qmqq"]
+[ext_resource type="Texture2D" uid="uid://nliv5ax08l40" path="res://icon.svg" id="7_8qske"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_lquwl"]
 bounce = 5.75
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1c2t3"]
+size = Vector2(172, 316)
 
 [node name="Arena" type="Node2D" unique_id=1235424377]
 
@@ -24,40 +28,6 @@ contact_monitor = true
 max_contacts_reported = 5
 
 [node name="Rope" parent="." unique_id=997918495 instance=ExtResource("3_tu31c")]
-
-[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1884622442]
-
-[node name="UI" type="Control" parent="CanvasLayer" unique_id=1313006326]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-
-[node name="Vignette" type="ColorRect" parent="CanvasLayer/UI" unique_id=639082538]
-z_index = 2
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0, 0, 0, 0)
-
-[node name="VSlider" type="VSlider" parent="CanvasLayer/UI" unique_id=1602673351]
-visible = false
-custom_minimum_size = Vector2(0, 100)
-layout_mode = 1
-anchors_preset = 11
-anchor_left = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -16.0
-grow_horizontal = 0
-grow_vertical = 2
 
 [node name="Spawner" type="Timer" parent="." unique_id=224719985]
 autostart = true
@@ -76,5 +46,23 @@ points = PackedVector2Array(10, -2631, 2590, -1273, 2635, 1804, 101, 3207, -2479
 closed = true
 width = 50.0
 
+[node name="Shop" type="Area2D" parent="." unique_id=493612148]
+
+[node name="Label" type="Label" parent="Shop" unique_id=1462120779]
+offset_left = 2145.0
+offset_top = -105.0
+offset_right = 2199.0
+offset_bottom = -87.0
+text = "SHOP"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Shop" unique_id=1760762414]
+position = Vector2(2168, 6)
+shape = SubResource("RectangleShape2D_1c2t3")
+
+[node name="Sprite2D" type="Sprite2D" parent="Shop" unique_id=646972443]
+position = Vector2(2169, 6)
+texture = ExtResource("7_8qske")
+
 [connection signal="timeout" from="Spawner" to="Spawner" method="every_second"]
 [connection signal="body_exited" from="Area2D" to="Area2D" method="_on_body_exited"]
+[connection signal="body_entered" from="Shop" to="Area2D" method="on_shop_entered"]

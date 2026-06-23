@@ -5,15 +5,7 @@ using System.ComponentModel;
 public partial class Goblin : Mob
 {
 	ProgressBar healthbar;
-	public override void hit(Node body)
-	{
-		if (body is Wizard)
-		{
-			GD.Print("Dmaage?"); // Does not work
-			wizard.Damage(damage);
-			LinearVelocity += (wizard.Position - Position).Normalized() * -20;
-		}
-	}
+	
 	public override void Entry()
 	{
 		health = 10;
@@ -33,7 +25,7 @@ public partial class Goblin : Mob
 			this.die();
 		}
 		healthbar.Value -= damage;
-		LinearVelocity += velocity*1.7f;
+		ApplyCentralImpulse(velocity);
     }
 
     public override void Behaviour()

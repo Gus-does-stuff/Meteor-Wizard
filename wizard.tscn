@@ -18,3 +18,53 @@ texture = ExtResource("2_34mad")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=638953671]
 zoom = Vector2(0.25, 0.25)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=65882121]
+
+[node name="UI" type="Control" parent="CanvasLayer" unique_id=1199106536]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Vignette" type="ColorRect" parent="CanvasLayer/UI" unique_id=1962280151]
+z_index = 2
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0)
+
+[node name="Health" type="ProgressBar" parent="CanvasLayer/UI" unique_id=1256511439]
+modulate = Color(1, 0, 0, 1)
+custom_minimum_size = Vector2(40, 0)
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -4.0
+grow_horizontal = 0
+grow_vertical = 2
+value = 67.0
+fill_mode = 3
+
+[node name="Money" type="Label" parent="CanvasLayer/UI" unique_id=98961759]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -18.0
+offset_right = 20.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Placeholder"

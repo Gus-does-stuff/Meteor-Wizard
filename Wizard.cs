@@ -18,8 +18,9 @@ public partial class Wizard : CharacterBody2D, Alive
 
 	public void Damage(float damage)
 	{
-		health -= damage;
-		if (health <= 0)
+		Global.Instance.health -= damage;
+		UI.GetNode<ProgressBar>("Health").Value = Global.Instance.health;
+		if (Global.Instance.health <= 0)
 		{
 			die();
 		}
@@ -31,7 +32,8 @@ public partial class Wizard : CharacterBody2D, Alive
 		Orb = GetParent().GetNode<RigidBody2D>("ORB");
 		rope = GetParent().GetNode<Rope>("Rope");
 		rope.create_rope(10, this.GetPath(), Orb.GetPath(), Position, Orb.Position);
-		UI = GetParent().GetNode("CanvasLayer").GetNode<Control>("UI");
+		UI = GetNode("CanvasLayer").GetNode<Control>("UI");
+		UI.GetNode<ProgressBar>("Health").Value = Global.Instance.health;
 	}
 
 	public async void die()
@@ -49,7 +51,7 @@ public partial class Wizard : CharacterBody2D, Alive
     public override void _Process(double delta) // For visual stuff
     {
         base._Process(delta);
-		
+		UI.GetNode<Label>("Money").Text = Global.Instance.money.ToString() + " Dollaridoos";
     }
 
 	public override void _PhysicsProcess(double delta)

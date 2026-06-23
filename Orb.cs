@@ -14,6 +14,7 @@ public partial class Orb : RigidBody2D
     {
         base._Ready();
 		wizard = GetParent().GetNode<Wizard>("Wizard");
+		set_type(Global.Instance.current_orb);
     }
 
     public override void _PhysicsProcess(double delta)
@@ -42,6 +43,7 @@ public partial class Orb : RigidBody2D
 			Mass = 3f;
 			base_speed = 500f;
 			knockback_multiplier = 1;
+			GetNode<Sprite2D>("Sprite2D").Modulate = Colors.Blue;
 		}
 		if(orb_type == "Bouncy")
 		{
@@ -49,6 +51,7 @@ public partial class Orb : RigidBody2D
 			Mass = 2f;
 			base_speed = 500f;
 			knockback_multiplier = 2;
+			GetNode<Sprite2D>("Sprite2D").Modulate = Colors.Green;
 		}
 		if(orb_type == "Massive")
 		{
@@ -56,6 +59,7 @@ public partial class Orb : RigidBody2D
 			Mass = 10f;
 			base_speed = 300f;
 			knockback_multiplier = 1.5f;
+			GetNode<Sprite2D>("Sprite2D").Modulate = Colors.Black;
 		}
 		if(orb_type == "Fast")
 		{
@@ -63,6 +67,7 @@ public partial class Orb : RigidBody2D
 			Mass = 1f;
 			base_speed = 2000f;
 			knockback_multiplier = 1.5f;
+			GetNode<Sprite2D>("Sprite2D").Modulate = Colors.Red;
 		}
 		else
 		{

@@ -14,20 +14,34 @@ public abstract partial class Mob : RigidBody2D, Alive
     public float acceletation = 1;
 	[Export]
 	public float spawn_chance = 0.1f;
+    public int money_drop = 1;
 	public Wizard wizard;
 	// Called when the node enters the scene tree for the first time.
     public abstract void Behaviour();
     public abstract void Entry();
     public abstract void Damage(float damage, Vector2 velocity);
-    public abstract void hit(Node body);
+    public void hit(Node body)
+    {
+        GD.Print("Hit");
+		if (body is Wizard)
+		{
+			GD.Print("Dmaage?"); // Does not work
+			wizard.Damage(damage);
+			LinearVelocity = (wizard.Position - Position).Normalized() * -500;
+		}
+    }
 
     public void die()
     {
         this.Free(); // Add potential animation and sound here
+        Global.Instance.money += money_drop;
     }
 	public override void _Ready()
 	{
 		wizard = GetParent().GetNode<Wizard>("Wizard");
+        BodyEntered += hit;
+        ContactMonitor = true;
+        MaxContactsReported = 3;
         Entry();
 	}
 
