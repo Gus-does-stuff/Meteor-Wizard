@@ -1,6 +1,7 @@
 using Godot;
 using System;
 using System.ComponentModel;
+using System.Linq;
 
 public abstract partial class Mob : RigidBody2D, Alive
 {
@@ -33,8 +34,8 @@ public abstract partial class Mob : RigidBody2D, Alive
 
     public void die()
     {
-        this.Free(); // Add potential animation and sound here
-        Global.Instance.money += money_drop;
+        this.QueueFree(); // Add potential animation and sound here
+        Global.Instance.money += money_drop + Global.Instance.current_items.Count(o=>o=="Hemonomics");
     }
 	public override void _Ready()
 	{

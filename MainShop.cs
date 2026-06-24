@@ -23,5 +23,11 @@ public partial class MainShop : Control
 		GetTree().ChangeSceneToPacked(next);
 	}
 
+    public override void _Process(double delta)
+    {
+        base._Process(delta);
+		GetNode("VBox").GetNode("HBoxContainer").GetNode("Items").GetNode("HBoxContainer").GetNode<Label>("Money").Text = Global.Instance.money.ToString() + " Dollaridoos";
+    }
+
 	
 }

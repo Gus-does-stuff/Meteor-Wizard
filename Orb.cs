@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Linq;
 
 public partial class Orb : RigidBody2D
 {
@@ -15,6 +16,9 @@ public partial class Orb : RigidBody2D
         base._Ready();
 		wizard = GetParent().GetNode<Wizard>("Wizard");
 		set_type(Global.Instance.current_orb);
+		speed = base_speed * (1 + 0.2f*Global.Instance.current_items.Count(o => o == "Aerodynamics"));
+		((CircleShape2D)GetNode<CollisionShape2D>("Hitbox").Shape).Radius = 75*(1 + 0.2f*Global.Instance.current_items.Count(o=>o=="Big Orb"));
+		GetNode<Sprite2D>("Sprite2D").Scale = Vector2.One * (1 + 0.2f*Global.Instance.current_items.Count(o=>o=="Big Orb"));
     }
 
     public override void _PhysicsProcess(double delta)
@@ -30,8 +34,12 @@ public partial class Orb : RigidBody2D
 	{
 		if (body is Mob mob)
 		{
-			mob.Damage(base_damage*LinearVelocity.Length()*Mass/500, LinearVelocity);
+			mob.Damage((1 + Global.Instance.current_items.Count(o => o == "Prickly Orb")*0.2f)*base_damage*LinearVelocity.Length()*Mass/100, LinearVelocity);
 			
+		}
+		if (body is Wizard)
+		{
+			ApplyCentralImpulse((Position - wizard.Position).Normalized() * 1000 * Global.Instance.current_items.Count(o=>o=="Lead Tipped Boots"));
 		}
 	}
 

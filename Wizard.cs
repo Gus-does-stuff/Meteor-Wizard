@@ -3,6 +3,7 @@ using Godot.Collections;
 using System;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.Linq;
 using System.Text.RegularExpressions;
 
 public partial class Wizard : CharacterBody2D, Alive
@@ -41,6 +42,16 @@ public partial class Wizard : CharacterBody2D, Alive
 		space_ability = UI.GetNode("Abilities").GetNode<TextureProgressBar>("space_ability");
 		UI.GetNode("Abilities").GetNode<TextureProgressBar>("shift_ability").TextureUnder = ResourceLoader.Load<Texture2D>("Icons/Shift_Abilities/" + Global.Instance.shift_ability + ".png");
 		UI.GetNode("Abilities").GetNode<TextureProgressBar>("space_ability").TextureUnder = ResourceLoader.Load<Texture2D>("Icons/Space_Abilities/" + Global.Instance.space_ability + ".png");
+		shift_ability.MaxValue = 5 - Global.Instance.current_items.Count(o => o == "More Magic!");
+		space_ability.MaxValue = 5 - Global.Instance.current_items.Count(o => o == "Magickify Orb");
+		for (int i = 0; i < Global.Instance.current_items.Count; i++)
+		{
+			TextureRect item_icon = new TextureRect();
+			item_icon.Texture = ResourceLoader.Load<Texture2D>("Icons/Items/" + Global.Instance.current_items[i] + ".png");
+			item_icon.TooltipText = Global.Instance.current_items[i] + "\n" + Global.Instance.item_descriptions[Global.Instance.items.IndexOf(Global.Instance.current_items[i])];
+			UI.GetNode<Control>("Items").AddChild(item_icon);
+		}
+		
 	}
 
 	public async void die()
@@ -129,10 +140,5 @@ public partial class Wizard : CharacterBody2D, Alive
 			}
 		}
 		MoveAndSlide();
-	}
-
-	public void update_powers() // None for now. Durable for extra health? Extra speed?
-	{
-		
 	}
 }

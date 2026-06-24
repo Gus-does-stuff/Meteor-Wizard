@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://nliv5ax08l40" path="res://icon.svg" id="2_alr6r"]
 [ext_resource type="Script" uid="uid://50i71x10meaw" path="res://SpaceShop.cs" id="4_fn3gv"]
 [ext_resource type="Script" uid="uid://33oekmgrmkkh" path="res://ShiftShop.cs" id="5_u8xvj"]
+[ext_resource type="Script" uid="uid://dfnly0umsglvh" path="res://ItemShop.cs" id="6_icixs"]
 
 [node name="Upgrades" type="Control" unique_id=743062953]
 layout_mode = 3
@@ -35,6 +36,7 @@ size_flags_vertical = 3
 mouse_filter = 2
 
 [node name="Abilities" type="VBoxContainer" parent="VBox/HBoxContainer" unique_id=237429948]
+custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 mouse_filter = 2
 
@@ -115,6 +117,11 @@ horizontal_alignment = 1
 layout_mode = 2
 text = "Get this ability?"
 
+[node name="ColorRect" type="ColorRect" parent="VBox/HBoxContainer" unique_id=590894310]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+color = Color(0.654902, 0.18039216, 0.023529412, 1)
+
 [node name="Items" type="VBoxContainer" parent="VBox/HBoxContainer" unique_id=1226747479]
 layout_mode = 2
 size_flags_horizontal = 3
@@ -124,23 +131,108 @@ layout_mode = 2
 text = "Items"
 horizontal_alignment = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBox/HBoxContainer/Items" unique_id=1240070812]
+[node name="ItemShop" type="HBoxContainer" parent="VBox/HBoxContainer/Items" unique_id=1240070812]
 custom_minimum_size = Vector2(0, 200)
 layout_mode = 2
+script = ExtResource("6_icixs")
 
-[node name="Item1" type="VBoxContainer" parent="VBox/HBoxContainer/Items/HBoxContainer" unique_id=1040898842]
+[node name="Item1" type="VBoxContainer" parent="VBox/HBoxContainer/Items/ItemShop" unique_id=1040898842]
 layout_mode = 2
+size_flags_horizontal = 3
 
-[node name="Item2" type="VBoxContainer" parent="VBox/HBoxContainer/Items/HBoxContainer" unique_id=984292014]
+[node name="TextureRect" type="TextureRect" parent="VBox/HBoxContainer/Items/ItemShop/Item1" unique_id=1790486472]
 layout_mode = 2
+texture = ExtResource("2_alr6r")
+stretch_mode = 5
 
-[node name="Item3" type="VBoxContainer" parent="VBox/HBoxContainer/Items/HBoxContainer" unique_id=1092352935]
+[node name="Name" type="Label" parent="VBox/HBoxContainer/Items/ItemShop/Item1" unique_id=290619336]
 layout_mode = 2
+text = "Placeholder"
+horizontal_alignment = 1
+
+[node name="Description" type="Label" parent="VBox/HBoxContainer/Items/ItemShop/Item1" unique_id=2044540486]
+layout_mode = 2
+text = "Description Placeholder"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="Price" type="Label" parent="VBox/HBoxContainer/Items/ItemShop/Item1" unique_id=1635895119]
+layout_mode = 2
+horizontal_alignment = 1
+
+[node name="Equip" type="Button" parent="VBox/HBoxContainer/Items/ItemShop/Item1" unique_id=1757380170]
+layout_mode = 2
+text = "Get this ability?"
+
+[node name="Item2" type="VBoxContainer" parent="VBox/HBoxContainer/Items/ItemShop" unique_id=984292014]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="TextureRect" type="TextureRect" parent="VBox/HBoxContainer/Items/ItemShop/Item2" unique_id=1166069201]
+layout_mode = 2
+texture = ExtResource("2_alr6r")
+stretch_mode = 5
+
+[node name="Name" type="Label" parent="VBox/HBoxContainer/Items/ItemShop/Item2" unique_id=158771156]
+layout_mode = 2
+text = "Placeholder"
+horizontal_alignment = 1
+
+[node name="Description" type="Label" parent="VBox/HBoxContainer/Items/ItemShop/Item2" unique_id=1970372203]
+layout_mode = 2
+text = "Description Placeholder"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="Price" type="Label" parent="VBox/HBoxContainer/Items/ItemShop/Item2" unique_id=338012252]
+layout_mode = 2
+horizontal_alignment = 1
+
+[node name="Equip" type="Button" parent="VBox/HBoxContainer/Items/ItemShop/Item2" unique_id=1292471741]
+layout_mode = 2
+text = "Get this ability?"
+
+[node name="Item3" type="VBoxContainer" parent="VBox/HBoxContainer/Items/ItemShop" unique_id=1092352935]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="TextureRect" type="TextureRect" parent="VBox/HBoxContainer/Items/ItemShop/Item3" unique_id=101629483]
+layout_mode = 2
+texture = ExtResource("2_alr6r")
+stretch_mode = 5
+
+[node name="Name" type="Label" parent="VBox/HBoxContainer/Items/ItemShop/Item3" unique_id=536249864]
+layout_mode = 2
+text = "Placeholder"
+horizontal_alignment = 1
+
+[node name="Description" type="Label" parent="VBox/HBoxContainer/Items/ItemShop/Item3" unique_id=2139123676]
+layout_mode = 2
+text = "Description Placeholder"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="Price" type="Label" parent="VBox/HBoxContainer/Items/ItemShop/Item3" unique_id=1490297315]
+layout_mode = 2
+horizontal_alignment = 1
+
+[node name="Equip" type="Button" parent="VBox/HBoxContainer/Items/ItemShop/Item3" unique_id=211235477]
+layout_mode = 2
+text = "Get this ability?"
 
 [node name="ColorRect" type="ColorRect" parent="VBox/HBoxContainer/Items" unique_id=102629505]
 layout_mode = 2
 size_flags_vertical = 3
 color = Color(1, 1, 1, 0)
+
+[node name="Current Items" type="HBoxContainer" parent="VBox/HBoxContainer/Items" unique_id=1850237528]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBox/HBoxContainer/Items" unique_id=1135296989]
+layout_mode = 2
+
+[node name="Money" type="Label" parent="VBox/HBoxContainer/Items/HBoxContainer" unique_id=392737441]
+layout_mode = 2
 
 [node name="Leave" type="Button" parent="VBox/HBoxContainer/Items" unique_id=751224134]
 layout_mode = 2
@@ -172,4 +264,7 @@ color = Color(0, 0, 0, 1)
 [connection signal="button_up" from="VBox/HBoxContainer/Abilities/Orb/Equip" to="VBox/HBoxContainer/Abilities/Orb" method="get_orb"]
 [connection signal="button_up" from="VBox/HBoxContainer/Abilities/Space Ability/Equip" to="VBox/HBoxContainer/Abilities/Space Ability" method="get_ability"]
 [connection signal="button_up" from="VBox/HBoxContainer/Abilities/Shift Ability/Equip" to="VBox/HBoxContainer/Abilities/Shift Ability" method="get_ability"]
+[connection signal="button_up" from="VBox/HBoxContainer/Items/ItemShop/Item1/Equip" to="VBox/HBoxContainer/Items/ItemShop" method="buy_item_1"]
+[connection signal="button_up" from="VBox/HBoxContainer/Items/ItemShop/Item2/Equip" to="VBox/HBoxContainer/Items/ItemShop" method="buy_item_2"]
+[connection signal="button_up" from="VBox/HBoxContainer/Items/ItemShop/Item3/Equip" to="VBox/HBoxContainer/Items/ItemShop" method="buy_item_3"]
 [connection signal="button_up" from="VBox/HBoxContainer/Items/Leave" to="." method="leave"]

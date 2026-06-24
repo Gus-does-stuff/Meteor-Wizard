@@ -1,4 +1,5 @@
 using Godot;
+using Godot.NativeInterop;
 using System;
 using System.ComponentModel;
 
@@ -26,6 +27,7 @@ public partial class Goblin : Mob
 		}
 		healthbar.Value -= damage;
 		ApplyCentralImpulse(velocity);
+		Funcs.damage_number(GetParent(), Position, Mathf.RoundToInt(damage));
     }
 
     public override void Behaviour()

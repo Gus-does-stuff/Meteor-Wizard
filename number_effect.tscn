@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://ewbeb54pfatp"]
+
+[ext_resource type="Script" uid="uid://dmnr4xlrfn27l" path="res://NumberEffect.cs" id="1_71wk8"]
+[ext_resource type="Texture2D" uid="uid://nliv5ax08l40" path="res://icon.svg" id="2_jmw3t"]
+
+[node name="Number Effect" type="Node2D" unique_id=495944928]
+script = ExtResource("1_71wk8")
+
+[node name="Label" type="Label" parent="." unique_id=802158015]
+modulate = Color(0, 0, 0, 1)
+offset_right = 40.0
+offset_bottom = 18.0
+scale = Vector2(3, 3)
+text = "Placeholder"
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1578377663]
+visible = false
+texture = ExtResource("2_jmw3t")

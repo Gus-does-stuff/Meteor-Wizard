@@ -112,6 +112,11 @@ tint_progress = Color(1, 1, 1, 0.3254902)
 wait_time = 5.0
 one_shot = true
 
+[node name="Items" type="HBoxContainer" parent="CanvasLayer/UI" unique_id=796329866]
+layout_mode = 1
+offset_right = 40.0
+offset_bottom = 40.0
+
 [node name="Shield" type="Area2D" parent="." unique_id=753039202]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Shield" unique_id=527206073]
