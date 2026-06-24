@@ -3,6 +3,7 @@ using Godot.Collections;
 using System;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.Text.RegularExpressions;
 
 public partial class Wizard : CharacterBody2D, Alive
 {
@@ -15,6 +16,8 @@ public partial class Wizard : CharacterBody2D, Alive
 	private RigidBody2D Orb;
 	private Rope rope;
 	private Control UI;
+	private TextureProgressBar shift_ability;
+	private TextureProgressBar space_ability;
 
 	public void Damage(float damage)
 	{
@@ -34,6 +37,10 @@ public partial class Wizard : CharacterBody2D, Alive
 		rope.create_rope(10, this.GetPath(), Orb.GetPath(), Position, Orb.Position);
 		UI = GetNode("CanvasLayer").GetNode<Control>("UI");
 		UI.GetNode<ProgressBar>("Health").Value = Global.Instance.health;
+		shift_ability = UI.GetNode("Abilities").GetNode<TextureProgressBar>("shift_ability");
+		space_ability = UI.GetNode("Abilities").GetNode<TextureProgressBar>("space_ability");
+		UI.GetNode("Abilities").GetNode<TextureProgressBar>("shift_ability").TextureUnder = ResourceLoader.Load<Texture2D>("Icons/Shift_Abilities/" + Global.Instance.shift_ability + ".png");
+		UI.GetNode("Abilities").GetNode<TextureProgressBar>("space_ability").TextureUnder = ResourceLoader.Load<Texture2D>("Icons/Space_Abilities/" + Global.Instance.space_ability + ".png");
 	}
 
 	public async void die()
@@ -60,17 +67,67 @@ public partial class Wizard : CharacterBody2D, Alive
 
 		Vector2 direction = Input.GetVector("left", "right", "up", "down");
 
-		if (direction != Vector2.Zero)
+		if (velocity.Length() > Speed * Mathf.Sqrt2)
+		{
+			velocity = direction*Speed - velocity.Normalized() * Speed * (float)delta;
+		}
+		else if (direction != Vector2.Zero)
 		{
 			velocity = direction * Speed;
 		}
 		else
 		{
-			velocity.X = Mathf.MoveToward(Velocity.X, 0, Speed);
-			velocity.Y = Mathf.MoveToward(Velocity.Y, 0, Speed);
+			velocity -= velocity.Normalized() * Speed * (float)delta;
 		}
 
 		Velocity = velocity;
+		
+		shift_ability.Value -= delta;
+		space_ability.Value -= delta;
+		//GD.Print(Input.IsActionPressed("shift"));
+		if (shift_ability.Value <= 0 && Input.IsActionPressed("shift"))
+		{
+			shift_ability.Value = shift_ability.MaxValue;
+			switch (Global.Instance.shift_ability)
+			{
+				case "Dash Away":
+				Velocity = -Speed*4*((Orb.Position - Position).Normalized());
+				break;
+				case "Dash Toward":
+				Velocity = Speed*8*((Orb.Position - Position).Normalized());
+				break;
+				case "Shield":
+				Array<Node2D> entities = GetNode<Area2D>("Shield").GetOverlappingBodies();
+				for (int i = 0; i < entities.Count; i++)
+				{
+					if (entities[i] is RigidBody2D entity)
+					{
+						entity.LinearVelocity = (entity.Position - this.Position).Normalized() * 1000;
+					}
+				}
+				break;
+			}
+		}
+		if (space_ability.Value <= 0 && Input.IsActionPressed("space"))
+		{
+			space_ability.Value = space_ability.MaxValue;
+			switch (Global.Instance.space_ability)
+			{
+				case "Attract Orb":
+				Array<Node2D> entities = Orb.GetNode<Area2D>("Attract").GetOverlappingBodies();
+				for (int i = 0; i < entities.Count; i++)
+				{
+					if (entities[i] is RigidBody2D entity)
+					{
+						entity.LinearVelocity = -(entity.Position - Orb.Position).Normalized() * 1000;
+					}
+				}
+				break;
+				case "Spin Orb":
+				Orb.LinearVelocity += (Orb.Position - Position).Rotated(Mathf.Pi/2).Normalized() * 1000;
+				break;
+			}
+		}
 		MoveAndSlide();
 	}
 

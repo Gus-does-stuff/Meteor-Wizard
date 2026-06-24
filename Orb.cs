@@ -65,7 +65,7 @@ public partial class Orb : RigidBody2D
 		{
 			PhysicsMaterialOverride.Bounce = 4f;
 			Mass = 1f;
-			base_speed = 2000f;
+			base_speed = 5000f;
 			knockback_multiplier = 1.5f;
 			GetNode<Sprite2D>("Sprite2D").Modulate = Colors.Red;
 		}
