@@ -6,10 +6,11 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text.RegularExpressions;
 
-public partial class Wizard : CharacterBody2D, Alive
+public partial class Wizard : RigidBody2D, Alive
 {
 	[Export]
 	public float Speed = 300.0f;
+	public float Acceleration = 1000f;
 	[Export]
 	public Array<String> powers;
 	public String orb_type = "Normal";
@@ -77,24 +78,14 @@ public partial class Wizard : CharacterBody2D, Alive
 
 	public override void _PhysicsProcess(double delta)
 	{
-		Vector2 velocity = Velocity;
-
 		Vector2 direction = Input.GetVector("left", "right", "up", "down");
 
-		if (velocity.Length() > Speed * Mathf.Sqrt2)
-		{
-			velocity = direction*Speed - velocity.Normalized() * Speed * (float)delta;
-		}
-		else if (direction != Vector2.Zero)
-		{
-			velocity = direction * Speed;
-		}
-		else
-		{
-			velocity -= velocity.Normalized() * Speed * (float)delta;
-		}
+		ApplyCentralForce(direction*Acceleration*Mass);
 
-		Velocity = velocity;
+		if(LinearVelocity.Length() >= Speed)
+		{
+			LinearVelocity -= LinearVelocity.Normalized() * Acceleration * (float)delta;
+		}
 		
 		shift_ability.Value -= delta;
 		space_ability.Value -= delta;
@@ -105,10 +96,10 @@ public partial class Wizard : CharacterBody2D, Alive
 			switch (Global.Instance.shift_ability)
 			{
 				case "Dash Away":
-				Velocity = -Speed*4*((Orb.Position - Position).Normalized());
+				ApplyCentralImpulse(-Mass*Speed*4*((Orb.Position - Position).Normalized()));
 				break;
 				case "Dash Toward":
-				Velocity = Speed*8*((Orb.Position - Position).Normalized());
+				ApplyCentralImpulse(Mass*Speed*8*((Orb.Position - Position).Normalized()));
 				break;
 				case "Shield":
 				Array<Node2D> entities = GetNode<Area2D>("Shield").GetOverlappingBodies();
@@ -137,7 +128,7 @@ public partial class Wizard : CharacterBody2D, Alive
 				Array<Node2D> entities = Orb.GetNode<Area2D>("Attract").GetOverlappingBodies();
 				for (int i = 0; i < entities.Count; i++)
 				{
-					if (entities[i] is RigidBody2D entity)
+					if (entities[i] is RigidBody2D entity && ! (entities[i] is Orb))
 					{
 						entity.LinearVelocity = -(entity.Position - Orb.Position).Normalized() * 1000;
 					}
@@ -148,6 +139,5 @@ public partial class Wizard : CharacterBody2D, Alive
 				break;
 			}
 		}
-		MoveAndSlide();
 	}
 }

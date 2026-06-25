@@ -7,13 +7,21 @@
 [ext_resource type="Texture2D" uid="uid://bd0b8188s57gk" path="res://Assets/black.png" id="4_wsbrn"]
 [ext_resource type="Texture2D" uid="uid://pyapk1rkut6f" path="res://Assets/Shield Rune.png" id="6_rsvjg"]
 
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_rsvjg"]
+friction = 10.0
+bounce = 1.0
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_4hy44"]
 radius = 50.01
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1c2t3"]
 radius = 267.0468
 
-[node name="Wizard" type="CharacterBody2D" unique_id=2005119280]
+[node name="Wizard" type="RigidBody2D" unique_id=232593876]
+mass = 20.0
+physics_material_override = SubResource("PhysicsMaterial_rsvjg")
+gravity_scale = 0.0
+linear_damp = 0.5
 script = ExtResource("1_xxhrx")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2146697994]

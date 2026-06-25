@@ -19,11 +19,10 @@ colors = PackedColorArray(1, 0, 0, 1, 1, 0.45882353, 0, 1)
 
 [node name="ORB" type="RigidBody2D" unique_id=479306263]
 linear_damp = 0.23
-angular_damp = 0.35
+angular_velocity = 0.17453292
 script = ExtResource("1_xdlj8")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1045780877]
-modulate = Color(1, 0, 0.40784314, 1)
 scale = Vector2(1.305, 1.305)
 texture = ExtResource("2_2qvkr")
 

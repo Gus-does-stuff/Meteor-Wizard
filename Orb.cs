@@ -8,6 +8,7 @@ public partial class Orb : RigidBody2D
 	private Wizard wizard;
 	public float base_damage = 1;
 	public float base_speed = 1000;
+	public float slowdown = 1000;
 	public float knockback_multiplier = 1;
 	public float speed = 1000;
 	public Line2D trail;
@@ -26,9 +27,9 @@ public partial class Orb : RigidBody2D
     public override void _PhysicsProcess(double delta)
     {
         base._PhysicsProcess(delta);
-		if(LinearVelocity.Length() >= speed)
+				if(LinearVelocity.Length() >= speed)
 		{
-			LinearVelocity = LinearVelocity.Normalized() * speed;
+			LinearVelocity -= LinearVelocity.Normalized() * slowdown * (float)delta;
 		}
     }
 
@@ -73,7 +74,7 @@ public partial class Orb : RigidBody2D
 			Mass = 3f;
 			base_speed = 500f;
 			knockback_multiplier = 1;
-			GetNode<Sprite2D>("Sprite2D").Texture = ResourceLoader.Load<Texture2D>("Assets/Boundy Orb.png");
+			GetNode<Sprite2D>("Sprite2D").Texture = ResourceLoader.Load<Texture2D>("Assets/Bouncy Orb.png");
 
 		}
 		if(orb_type == "Massive")
