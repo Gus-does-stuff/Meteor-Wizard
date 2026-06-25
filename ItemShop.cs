@@ -12,14 +12,24 @@ public partial class ItemShop : HBoxContainer
 	{
 		RandomNumberGenerator rng = new RandomNumberGenerator();
 		items = Global.Instance.items.Duplicate();
+		items.Shuffle();
 		for(int i = 0; i < 3; i++)
 		{
 			item_indices[i] = Global.Instance.items.IndexOf(items[i]);
 			Control item_slot = GetNode<Control>("Item" + (i+1).ToString());
 			item_slot.GetNode<Label>("Name").Text = items[i];
-			item_slot.GetNode<Label>("Description").Text = Global.Instance.item_descriptions[item_indices[i]];
+			item_slot.GetNode<TextureRect>("TextureRect").TooltipText = Global.Instance.item_descriptions[item_indices[i]];
 			item_slot.GetNode<Label>("Price").Text = rng.RandiRange(100, 250).ToString();
 			item_slot.GetNode<TextureRect>("TextureRect").Texture = ResourceLoader.Load<Texture2D>("res://Icons/Items/" + items[i] + ".png");
+		}
+	}
+
+    public override void _Process(double delta)
+    {
+        base._Process(delta);
+		foreach(Node child in GetParent().GetNode("Current Items").GetChildren())
+		{
+			if (child is TextureRect){child.QueueFree();}
 		}
 		for (int i = 0; i < Global.Instance.current_items.Count; i++)
 		{
@@ -27,14 +37,14 @@ public partial class ItemShop : HBoxContainer
 			item_icon.Texture = ResourceLoader.Load<Texture2D>("Icons/Items/" + Global.Instance.current_items[i] + ".png");
 			GetParent().GetNode("Current Items").AddChild(item_icon);
 		}
-	}
+    }
 
 	public void buy_item_1()
 	{
 		Node item = GetNode("Item1");
 		if (Global.Instance.money >= GetNode("Item1").GetNode<Label>("Price").Text.ToInt())
 		{
-			Global.Instance.items.Append(item.GetNode<Label>("Name").Text);
+			Global.Instance.current_items.Add(item.GetNode<Label>("Name").Text);
 			Global.Instance.money -= item.GetNode<Label>("Price").Text.ToInt();
 			item.GetNode<Button>("Equip").Disabled = true;
 			item.GetNode<Button>("Equip").Text = "Purchased!";
@@ -51,7 +61,7 @@ public partial class ItemShop : HBoxContainer
 		Node item = GetNode("Item2");
 		if (Global.Instance.money >= GetNode("Item2").GetNode<Label>("Price").Text.ToInt())
 		{
-			Global.Instance.items.Append(item.GetNode<Label>("Name").Text);
+			Global.Instance.current_items.Add(item.GetNode<Label>("Name").Text);
 			Global.Instance.money -= item.GetNode<Label>("Price").Text.ToInt();
 			item.GetNode<Button>("Equip").Disabled = true;
 			item.GetNode<Button>("Equip").Text = "Purchased!";
@@ -68,7 +78,7 @@ public partial class ItemShop : HBoxContainer
 		Node item = GetNode("Item3");
 		if (Global.Instance.money >= GetNode("Item3").GetNode<Label>("Price").Text.ToInt())
 		{
-			Global.Instance.items.Append(item.GetNode<Label>("Name").Text);
+			Global.Instance.current_items.Add(item.GetNode<Label>("Name").Text);
 			Global.Instance.money -= item.GetNode<Label>("Price").Text.ToInt();
 			item.GetNode<Button>("Equip").Disabled = true;
 			item.GetNode<Button>("Equip").Text = "Purchased!";

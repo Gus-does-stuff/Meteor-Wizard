@@ -40,10 +40,13 @@ public partial class Wizard : CharacterBody2D, Alive
 		UI.GetNode<ProgressBar>("Health").Value = Global.Instance.health;
 		shift_ability = UI.GetNode("Abilities").GetNode<TextureProgressBar>("shift_ability");
 		space_ability = UI.GetNode("Abilities").GetNode<TextureProgressBar>("space_ability");
-		UI.GetNode("Abilities").GetNode<TextureProgressBar>("shift_ability").TextureUnder = ResourceLoader.Load<Texture2D>("Icons/Shift_Abilities/" + Global.Instance.shift_ability + ".png");
-		UI.GetNode("Abilities").GetNode<TextureProgressBar>("space_ability").TextureUnder = ResourceLoader.Load<Texture2D>("Icons/Space_Abilities/" + Global.Instance.space_ability + ".png");
+		shift_ability.TextureUnder = ResourceLoader.Load<Texture2D>("Icons/Shift_Abilities/" + Global.Instance.shift_ability + ".png");
+		space_ability.TextureUnder = ResourceLoader.Load<Texture2D>("Icons/Space_Abilities/" + Global.Instance.space_ability + ".png");
 		shift_ability.MaxValue = 5 - Global.Instance.current_items.Count(o => o == "More Magic!");
 		space_ability.MaxValue = 5 - Global.Instance.current_items.Count(o => o == "Magickify Orb");
+		shift_ability.TooltipText = Global.Instance.shift_ability;
+		space_ability.TooltipText = Global.Instance.space_ability;
+		if (Global.Instance.space_ability == "Attract Orb") {Orb.GetNode<Sprite2D>("AreaVisual").Visible = true;}
 		for (int i = 0; i < Global.Instance.current_items.Count; i++)
 		{
 			TextureRect item_icon = new TextureRect();
@@ -109,6 +112,12 @@ public partial class Wizard : CharacterBody2D, Alive
 				break;
 				case "Shield":
 				Array<Node2D> entities = GetNode<Area2D>("Shield").GetOverlappingBodies();
+				GetNode<Sprite2D>("Shield Visual").Modulate = Colors.White;
+				Tween tween = CreateTween();
+				tween.TweenProperty(GetNode<Sprite2D>("Shield Visual"), "modulate", new Color(1,1,1,0), 1);
+				{
+					
+				};
 				for (int i = 0; i < entities.Count; i++)
 				{
 					if (entities[i] is RigidBody2D entity)

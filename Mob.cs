@@ -23,10 +23,8 @@ public abstract partial class Mob : RigidBody2D, Alive
     public abstract void Damage(float damage, Vector2 velocity);
     public void hit(Node body)
     {
-        GD.Print("Hit");
 		if (body is Wizard)
 		{
-			GD.Print("Dmaage?"); // Does not work
 			wizard.Damage(damage);
 			LinearVelocity = (wizard.Position - Position).Normalized() * -500;
 		}

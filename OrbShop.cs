@@ -11,6 +11,7 @@ public partial class OrbShop : VBoxContainer
 		orb = Global.Instance.orbs[rng.RandiRange(0, Global.Instance.orbs.Count-1)];
 		GetNode<Label>("Name").Text = orb;
 		GetNode<TextureRect>("TextureRect").Texture = ResourceLoader.Load<Texture2D>("res://Icons/Orbs/" + orb + ".png");
+		GetNode<TextureRect>("TextureRect").TooltipText = "Replaces current orb with:\n" + orb + " Orb";
 	}
 
 	public void get_orb()

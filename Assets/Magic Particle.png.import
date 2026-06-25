@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dsfkgxpm8g7na"
-path="res://.godot/imported/Shop.png-e3392c10677fa7d21c4d073ed6c48956.ctex"
+uid="uid://cjdvhchudnlvi"
+path="res://.godot/imported/Magic Particle.png-c34f3f06e0187fdeb1afbc2b07f4e6b6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Shop.png"
-dest_files=["res://.godot/imported/Shop.png-e3392c10677fa7d21c4d073ed6c48956.ctex"]
+source_file="res://Assets/Magic Particle.png"
+dest_files=["res://.godot/imported/Magic Particle.png-c34f3f06e0187fdeb1afbc2b07f4e6b6.ctex"]
 
 [params]
 

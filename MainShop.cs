@@ -27,6 +27,8 @@ public partial class MainShop : Control
     {
         base._Process(delta);
 		GetNode("VBox").GetNode("HBoxContainer").GetNode("Items").GetNode("HBoxContainer").GetNode<Label>("Money").Text = Global.Instance.money.ToString() + " Dollaridoos";
+		GetNode<TextureRect>("VBox/HBoxContainer/Items/Current Abilities/Space Ability").Texture = ResourceLoader.Load<Texture2D>("Icons/Space_Abilities/" + Global.Instance.space_ability + ".png");
+		GetNode<TextureRect>("VBox/HBoxContainer/Items/Current Abilities/Shift Ability").Texture = ResourceLoader.Load<Texture2D>("Icons/Shift_Abilities/" + Global.Instance.shift_ability + ".png");
     }
 
 	

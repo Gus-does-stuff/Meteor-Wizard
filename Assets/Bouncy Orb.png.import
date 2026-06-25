@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dsfkgxpm8g7na"
-path="res://.godot/imported/Shop.png-e3392c10677fa7d21c4d073ed6c48956.ctex"
+uid="uid://dl637n6o3mmne"
+path="res://.godot/imported/Bouncy Orb.png-eb7cfc1f75411240b56ff07eb37f8153.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Shop.png"
-dest_files=["res://.godot/imported/Shop.png-e3392c10677fa7d21c4d073ed6c48956.ctex"]
+source_file="res://Assets/Bouncy Orb.png"
+dest_files=["res://.godot/imported/Bouncy Orb.png-eb7cfc1f75411240b56ff07eb37f8153.ctex"]
 
 [params]
 

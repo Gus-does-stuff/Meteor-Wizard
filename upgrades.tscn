@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://voi2myyueenl" path="res://MainShop.cs" id="1_ba88x"]
 [ext_resource type="Script" uid="uid://csg3l4rsfvchv" path="res://OrbShop.cs" id="1_k80ou"]
 [ext_resource type="Texture2D" uid="uid://nliv5ax08l40" path="res://icon.svg" id="2_alr6r"]
+[ext_resource type="Texture2D" uid="uid://dsfkgxpm8g7na" path="res://Assets/Shop.png" id="2_myp64"]
 [ext_resource type="Script" uid="uid://50i71x10meaw" path="res://SpaceShop.cs" id="4_fn3gv"]
 [ext_resource type="Script" uid="uid://33oekmgrmkkh" path="res://ShiftShop.cs" id="5_u8xvj"]
 [ext_resource type="Script" uid="uid://dfnly0umsglvh" path="res://ItemShop.cs" id="6_icixs"]
@@ -17,6 +18,16 @@ grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("1_ba88x")
 
+[node name="TextureRect" type="TextureRect" parent="." unique_id=2145241353]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+grow_horizontal = 2
+mouse_filter = 2
+texture = ExtResource("2_myp64")
+stretch_mode = 3
+
 [node name="VBox" type="VBoxContainer" parent="." unique_id=1674283828]
 layout_mode = 1
 anchors_preset = 15
@@ -26,9 +37,10 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="TextureRect" type="TextureRect" parent="VBox" unique_id=2145241353]
+[node name="ColorRect" type="ColorRect" parent="VBox" unique_id=135323432]
+custom_minimum_size = Vector2(0, 170)
 layout_mode = 2
-mouse_filter = 2
+color = Color(1, 1, 1, 0)
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBox" unique_id=166385411]
 layout_mode = 2
@@ -41,24 +53,27 @@ layout_mode = 2
 mouse_filter = 2
 
 [node name="Orb" type="VBoxContainer" parent="VBox/HBoxContainer/Abilities" unique_id=1150262851]
-custom_minimum_size = Vector2(0, 200)
 layout_mode = 2
 size_flags_horizontal = 3
+size_flags_vertical = 3
 mouse_filter = 2
 script = ExtResource("1_k80ou")
 
 [node name="Label" type="Label" parent="VBox/HBoxContainer/Abilities/Orb" unique_id=1552471528]
+visible = false
 layout_mode = 2
 text = "Orb"
 horizontal_alignment = 1
 
 [node name="TextureRect" type="TextureRect" parent="VBox/HBoxContainer/Abilities/Orb" unique_id=1496028074]
 layout_mode = 2
-mouse_filter = 2
+size_flags_vertical = 3
 texture = ExtResource("2_alr6r")
+expand_mode = 1
 stretch_mode = 5
 
 [node name="Name" type="Label" parent="VBox/HBoxContainer/Abilities/Orb" unique_id=76834040]
+visible = false
 layout_mode = 2
 text = "Placeholder"
 horizontal_alignment = 1
@@ -68,22 +83,26 @@ layout_mode = 2
 text = "Get this orb?"
 
 [node name="Space Ability" type="VBoxContainer" parent="VBox/HBoxContainer/Abilities" unique_id=244227429]
-custom_minimum_size = Vector2(0, 200)
 layout_mode = 2
 size_flags_horizontal = 3
+size_flags_vertical = 3
 script = ExtResource("4_fn3gv")
 
 [node name="Label" type="Label" parent="VBox/HBoxContainer/Abilities/Space Ability" unique_id=2097926279]
+visible = false
 layout_mode = 2
 text = "Space Ability"
 horizontal_alignment = 1
 
 [node name="TextureRect" type="TextureRect" parent="VBox/HBoxContainer/Abilities/Space Ability" unique_id=289206828]
 layout_mode = 2
+size_flags_vertical = 3
 texture = ExtResource("2_alr6r")
+expand_mode = 1
 stretch_mode = 5
 
 [node name="Name" type="Label" parent="VBox/HBoxContainer/Abilities/Space Ability" unique_id=2070943496]
+visible = false
 layout_mode = 2
 text = "Placeholder"
 horizontal_alignment = 1
@@ -93,22 +112,26 @@ layout_mode = 2
 text = "Get this ability?"
 
 [node name="Shift Ability" type="VBoxContainer" parent="VBox/HBoxContainer/Abilities" unique_id=882368666]
-custom_minimum_size = Vector2(0, 200)
 layout_mode = 2
 size_flags_horizontal = 3
+size_flags_vertical = 3
 script = ExtResource("5_u8xvj")
 
 [node name="Label" type="Label" parent="VBox/HBoxContainer/Abilities/Shift Ability" unique_id=539990415]
+visible = false
 layout_mode = 2
 text = "Shift Ability"
 horizontal_alignment = 1
 
 [node name="TextureRect" type="TextureRect" parent="VBox/HBoxContainer/Abilities/Shift Ability" unique_id=1702915194]
 layout_mode = 2
+size_flags_vertical = 3
 texture = ExtResource("2_alr6r")
+expand_mode = 1
 stretch_mode = 5
 
 [node name="Name" type="Label" parent="VBox/HBoxContainer/Abilities/Shift Ability" unique_id=28457410]
+visible = false
 layout_mode = 2
 text = "Placeholder"
 horizontal_alignment = 1
@@ -134,6 +157,7 @@ horizontal_alignment = 1
 [node name="ItemShop" type="HBoxContainer" parent="VBox/HBoxContainer/Items" unique_id=1240070812]
 custom_minimum_size = Vector2(0, 200)
 layout_mode = 2
+size_flags_vertical = 3
 script = ExtResource("6_icixs")
 
 [node name="Item1" type="VBoxContainer" parent="VBox/HBoxContainer/Items/ItemShop" unique_id=1040898842]
@@ -142,7 +166,9 @@ size_flags_horizontal = 3
 
 [node name="TextureRect" type="TextureRect" parent="VBox/HBoxContainer/Items/ItemShop/Item1" unique_id=1790486472]
 layout_mode = 2
+size_flags_vertical = 3
 texture = ExtResource("2_alr6r")
+expand_mode = 1
 stretch_mode = 5
 
 [node name="Name" type="Label" parent="VBox/HBoxContainer/Items/ItemShop/Item1" unique_id=290619336]
@@ -151,6 +177,7 @@ text = "Placeholder"
 horizontal_alignment = 1
 
 [node name="Description" type="Label" parent="VBox/HBoxContainer/Items/ItemShop/Item1" unique_id=2044540486]
+visible = false
 layout_mode = 2
 text = "Description Placeholder"
 horizontal_alignment = 1
@@ -162,7 +189,7 @@ horizontal_alignment = 1
 
 [node name="Equip" type="Button" parent="VBox/HBoxContainer/Items/ItemShop/Item1" unique_id=1757380170]
 layout_mode = 2
-text = "Get this ability?"
+text = "Get this item?"
 
 [node name="Item2" type="VBoxContainer" parent="VBox/HBoxContainer/Items/ItemShop" unique_id=984292014]
 layout_mode = 2
@@ -170,7 +197,9 @@ size_flags_horizontal = 3
 
 [node name="TextureRect" type="TextureRect" parent="VBox/HBoxContainer/Items/ItemShop/Item2" unique_id=1166069201]
 layout_mode = 2
+size_flags_vertical = 3
 texture = ExtResource("2_alr6r")
+expand_mode = 1
 stretch_mode = 5
 
 [node name="Name" type="Label" parent="VBox/HBoxContainer/Items/ItemShop/Item2" unique_id=158771156]
@@ -179,6 +208,7 @@ text = "Placeholder"
 horizontal_alignment = 1
 
 [node name="Description" type="Label" parent="VBox/HBoxContainer/Items/ItemShop/Item2" unique_id=1970372203]
+visible = false
 layout_mode = 2
 text = "Description Placeholder"
 horizontal_alignment = 1
@@ -190,7 +220,7 @@ horizontal_alignment = 1
 
 [node name="Equip" type="Button" parent="VBox/HBoxContainer/Items/ItemShop/Item2" unique_id=1292471741]
 layout_mode = 2
-text = "Get this ability?"
+text = "Get this item?"
 
 [node name="Item3" type="VBoxContainer" parent="VBox/HBoxContainer/Items/ItemShop" unique_id=1092352935]
 layout_mode = 2
@@ -198,7 +228,9 @@ size_flags_horizontal = 3
 
 [node name="TextureRect" type="TextureRect" parent="VBox/HBoxContainer/Items/ItemShop/Item3" unique_id=101629483]
 layout_mode = 2
+size_flags_vertical = 3
 texture = ExtResource("2_alr6r")
+expand_mode = 1
 stretch_mode = 5
 
 [node name="Name" type="Label" parent="VBox/HBoxContainer/Items/ItemShop/Item3" unique_id=536249864]
@@ -207,6 +239,7 @@ text = "Placeholder"
 horizontal_alignment = 1
 
 [node name="Description" type="Label" parent="VBox/HBoxContainer/Items/ItemShop/Item3" unique_id=2139123676]
+visible = false
 layout_mode = 2
 text = "Description Placeholder"
 horizontal_alignment = 1
@@ -218,15 +251,36 @@ horizontal_alignment = 1
 
 [node name="Equip" type="Button" parent="VBox/HBoxContainer/Items/ItemShop/Item3" unique_id=211235477]
 layout_mode = 2
-text = "Get this ability?"
+text = "Get this item?"
 
 [node name="ColorRect" type="ColorRect" parent="VBox/HBoxContainer/Items" unique_id=102629505]
+custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
-size_flags_vertical = 3
 color = Color(1, 1, 1, 0)
 
 [node name="Current Items" type="HBoxContainer" parent="VBox/HBoxContainer/Items" unique_id=1850237528]
 layout_mode = 2
+
+[node name="Label" type="Label" parent="VBox/HBoxContainer/Items/Current Items" unique_id=1990251460]
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
+text = "Items:         "
+
+[node name="Current Abilities" type="HBoxContainer" parent="VBox/HBoxContainer/Items" unique_id=1296064012]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBox/HBoxContainer/Items/Current Abilities" unique_id=340431776]
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
+text = "Abilities:"
+
+[node name="Shift Ability" type="TextureRect" parent="VBox/HBoxContainer/Items/Current Abilities" unique_id=1972017994]
+layout_mode = 2
+texture = ExtResource("2_alr6r")
+
+[node name="Space Ability" type="TextureRect" parent="VBox/HBoxContainer/Items/Current Abilities" unique_id=451438967]
+layout_mode = 2
+texture = ExtResource("2_alr6r")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBox/HBoxContainer/Items" unique_id=1135296989]
 layout_mode = 2

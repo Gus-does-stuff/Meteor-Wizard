@@ -1,13 +1,14 @@
 [gd_scene format=3 uid="uid://ctntb0x7eceqi"]
 
 [ext_resource type="Script" uid="uid://xt57wtj7jtta" path="res://Wizard.cs" id="1_xxhrx"]
-[ext_resource type="Texture2D" uid="uid://nliv5ax08l40" path="res://icon.svg" id="2_34mad"]
+[ext_resource type="Texture2D" uid="uid://bjhwhi6klxgnd" path="res://Assets/Wizard Hat.png" id="2_wsbrn"]
 [ext_resource type="Texture2D" uid="uid://pc8c1oyg41qo" path="res://Icons/Shift_Abilities/Dash Away.png" id="3_wsbrn"]
 [ext_resource type="Texture2D" uid="uid://dytjdm6muexc3" path="res://Icons/Orbs/Fast.png" id="3_xo1iy"]
 [ext_resource type="Texture2D" uid="uid://bd0b8188s57gk" path="res://Assets/black.png" id="4_wsbrn"]
+[ext_resource type="Texture2D" uid="uid://pyapk1rkut6f" path="res://Assets/Shield Rune.png" id="6_rsvjg"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_xo1iy"]
-size = Vector2(124, 128)
+[sub_resource type="CircleShape2D" id="CircleShape2D_4hy44"]
+radius = 50.01
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1c2t3"]
 radius = 267.0468
@@ -17,10 +18,11 @@ script = ExtResource("1_xxhrx")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2146697994]
 position = Vector2(-1, 0)
-shape = SubResource("RectangleShape2D_xo1iy")
+shape = SubResource("CircleShape2D_4hy44")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=242926747]
-texture = ExtResource("2_34mad")
+position = Vector2(-2, 1)
+texture = ExtResource("2_wsbrn")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=638953671]
 zoom = Vector2(0.25, 0.25)
@@ -121,3 +123,7 @@ offset_bottom = 40.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Shield" unique_id=527206073]
 shape = SubResource("CircleShape2D_1c2t3")
+
+[node name="Shield Visual" type="Sprite2D" parent="." unique_id=1999246504]
+modulate = Color(1, 1, 1, 0)
+texture = ExtResource("6_rsvjg")

@@ -1,14 +1,21 @@
 [gd_scene format=3 uid="uid://dmmlpw7mpkkpt"]
 
 [ext_resource type="Script" uid="uid://dcpb5cxcef0kx" path="res://Orb.cs" id="1_xdlj8"]
-[ext_resource type="Texture2D" uid="uid://nliv5ax08l40" path="res://icon.svg" id="2_2qvkr"]
-[ext_resource type="Texture2D" uid="uid://dk0c18yaavh8w" path="res://Assets/Orb Spikes.png" id="3_2qvkr"]
+[ext_resource type="Texture2D" uid="uid://cbwb2kmu5t2wl" path="res://Assets/Normal Orb.png" id="2_2qvkr"]
+[ext_resource type="Texture2D" uid="uid://bdnwbykh1ysng" path="res://Assets/Orb AOE.png" id="3_2qvkr"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_vx8ir"]
 radius = 75.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1c2t3"]
 radius = 312.0
+
+[sub_resource type="Curve" id="Curve_2qvkr"]
+_data = [Vector2(0, 0), 0.0, -0.11902834, 0, 0, Vector2(0.9931973, 0.63076925), 1.4878541, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_2qvkr"]
+colors = PackedColorArray(1, 0, 0, 1, 1, 0.45882353, 0, 1)
 
 [node name="ORB" type="RigidBody2D" unique_id=479306263]
 linear_damp = 0.23
@@ -17,6 +24,7 @@ script = ExtResource("1_xdlj8")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1045780877]
 modulate = Color(1, 0, 0.40784314, 1)
+scale = Vector2(1.305, 1.305)
 texture = ExtResource("2_2qvkr")
 
 [node name="Hitbox" type="CollisionShape2D" parent="." unique_id=1397560641]
@@ -27,9 +35,17 @@ shape = SubResource("CircleShape2D_vx8ir")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Attract" unique_id=21639410]
 shape = SubResource("CircleShape2D_1c2t3")
 
-[node name="Spikes" type="Sprite2D" parent="." unique_id=480021880]
+[node name="AreaVisual" type="Sprite2D" parent="." unique_id=480021880]
 visible = false
-position = Vector2(17, -10)
+position = Vector2(3, 1)
+scale = Vector2(1.265, 1.265)
 texture = ExtResource("3_2qvkr")
+
+[node name="Trail" type="Line2D" parent="." unique_id=1690185550]
+z_index = -1
+width = 100.0
+width_curve = SubResource("Curve_2qvkr")
+default_color = Color(1, 0, 0, 1)
+gradient = SubResource("Gradient_2qvkr")
 
 [connection signal="body_entered" from="." to="." method="_on_slam"]

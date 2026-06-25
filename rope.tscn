@@ -4,3 +4,5 @@
 
 [node name="Rope" type="Node2D" unique_id=997918495]
 script = ExtResource("1_0756u")
+
+[node name="Line" type="Line2D" parent="." unique_id=2035119040]

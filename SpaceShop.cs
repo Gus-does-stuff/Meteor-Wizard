@@ -11,6 +11,7 @@ public partial class SpaceShop : VBoxContainer
 		ability = Global.Instance.space_abilities[rng.RandiRange(0, Global.Instance.space_abilities.Count-1)];
 		GetNode<Label>("Name").Text = ability;
 		GetNode<TextureRect>("TextureRect").Texture = ResourceLoader.Load<Texture2D>("res://Icons/Space_Abilities/" + ability + ".png");
+		GetNode<TextureRect>("TextureRect").TooltipText = "Replaces current space ability with:\n" + ability;
 	}
 
 	public void get_ability()

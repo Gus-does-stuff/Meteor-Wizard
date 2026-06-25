@@ -11,6 +11,7 @@ public partial class ShiftShop : VBoxContainer
 		ability = Global.Instance.shift_abilities[rng.RandiRange(0, Global.Instance.shift_abilities.Count-1)];
 		GetNode<Label>("Name").Text = ability;
 		GetNode<TextureRect>("TextureRect").Texture = ResourceLoader.Load<Texture2D>("res://Icons/Shift_Abilities/" + ability + ".png");
+		GetNode<TextureRect>("TextureRect").TooltipText = "Replaces current shift ability with:\n" + ability;
 	}
 
 	public void get_ability()
