@@ -8,6 +8,7 @@ radius = 31.400637
 
 [node name="Goblin" type="RigidBody2D" unique_id=1263925967]
 gravity_scale = 0.0
+angular_damp = 1000.0
 script = ExtResource("1_u6mjv")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=633023513]

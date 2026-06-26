@@ -9,15 +9,15 @@ using System.Text.RegularExpressions;
 public partial class Wizard : RigidBody2D, Alive
 {
 	[Export]
-	public float Speed = 300.0f;
-	public float Acceleration = 1000f;
+	public float Speed = 600.0f;
+	public float Acceleration = 3000f;
 	[Export]
 	public Array<String> powers;
 	public String orb_type = "Normal";
 	public float health = 100;
 	private RigidBody2D Orb;
 	private Rope rope;
-	private Control UI;
+	public Control UI;
 	private TextureProgressBar shift_ability;
 	private TextureProgressBar space_ability;
 

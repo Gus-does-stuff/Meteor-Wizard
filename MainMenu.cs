@@ -3,14 +3,6 @@ using System;
 
 public partial class MainMenu : Control
 {
-	public override void _Ready()
-	{
-		base._Ready();
-		if (Global.Instance.wave != 0)
-		{
-			GetNode<Button>("Keep Going").Visible = true;
-		}
-	}
 
 	public void _on_run_it_button_up()
 	{

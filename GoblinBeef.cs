@@ -19,6 +19,7 @@ public partial class GoblinBeef : Mob
         base._Ready();
 		health = 75;
 		damage = 10;
+		money_drop = 15;
 
 		healthbar = GetNode<ProgressBar>("health");
 		for (int i = 1; i <= 3; i++)

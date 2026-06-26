@@ -29,7 +29,6 @@ public partial class BlorbosOrbs : Area2D
 
 	public async void _on_body_entered(Node2D body)
 	{
-		GD.Print("Body Entered Received");
 		if (body is Wizard wizard)
 		{
 			Tween fade_out_tween = CreateTween();

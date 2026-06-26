@@ -4,6 +4,13 @@ using System;
 public partial class Menu : Control
 {
 
+	public override void _Ready()
+	{
+		base._Ready();
+		Global.Instance.connect_button_sounds();
+	}
+
+
 	public void switch_menu(String menu_name)
 	{
 		for(int i = 0; i < GetChildCount(); i++) // to ignore the background color

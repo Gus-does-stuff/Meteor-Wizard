@@ -53,7 +53,7 @@ public partial class Orb : RigidBody2D
 	{
 		if (body is Mob mob)
 		{
-			mob.Damage((1 + Global.Instance.current_items.Count(o => o == "Prickly Orb")*0.2f)*base_damage*Mathf.Pow((LinearVelocity - mob.LinearVelocity).Length(), 2)*Mass/50000, LinearVelocity);
+			mob.Damage((1 + Global.Instance.current_items.Count(o => o == "Prickly Orb")*0.2f)*base_damage*Mathf.Pow((LinearVelocity - mob.LinearVelocity).Length(), 2)*Mass/10000, LinearVelocity);
 			
 		}
 		if (body is Wizard)
@@ -71,32 +71,32 @@ public partial class Orb : RigidBody2D
 		if(orb_type == "Normal")
 		{
 			PhysicsMaterialOverride.Bounce = 2f;
-			Mass = 3f;
-			base_speed = 500f;
+			Mass = 1f;
+			base_speed = 1500f;
 			knockback_multiplier = 1;
 			GetNode<Sprite2D>("Sprite2D").Texture = ResourceLoader.Load<Texture2D>("Assets/Normal Orb.png");
 		}
-		if(orb_type == "Bouncy")
+		else if(orb_type == "Bouncy")
 		{
 			PhysicsMaterialOverride.Bounce = 20f;
-			Mass = 3f;
-			base_speed = 500f;
+			Mass = 1f;
+			base_speed = 1500f;
 			knockback_multiplier = 1;
 			GetNode<Sprite2D>("Sprite2D").Texture = ResourceLoader.Load<Texture2D>("Assets/Bouncy Orb.png");
 
 		}
-		if(orb_type == "Massive")
+		else if(orb_type == "Massive")
 		{
 			PhysicsMaterialOverride.Bounce = 2f;
-			Mass = 20f;
-			base_speed = 500f;
+			Mass = 7f;
+			base_speed = 1500f;
 			knockback_multiplier = 1f;
 			GetNode<Sprite2D>("Sprite2D").Texture = ResourceLoader.Load<Texture2D>("Assets/Massive Orb.png");
 		}
-		if(orb_type == "Fast")
+		else if(orb_type == "Fast")
 		{
 			PhysicsMaterialOverride.Bounce = 2f;
-			Mass = 3f;
+			Mass = 1f;
 			base_speed = 5000f;
 			knockback_multiplier = 1f;
 			GetNode<Sprite2D>("Sprite2D").Texture = ResourceLoader.Load<Texture2D>("Assets/Fast Orb.png");

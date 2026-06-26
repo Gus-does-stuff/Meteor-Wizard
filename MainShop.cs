@@ -6,6 +6,8 @@ public partial class MainShop : Control
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
+		Global.Instance.health = Mathf.MoveToward(Global.Instance.health, 100, 15);
+		Global.Instance.connect_button_sounds();
 		GetNode<ColorRect>("Vignette").Visible = true;
 		Tween fade_out_tween = CreateTween();
 		fade_out_tween.TweenProperty(GetNode<ColorRect>("Vignette"), "color:a", 0f, 1f);

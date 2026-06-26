@@ -21,7 +21,10 @@ public abstract partial class Mob : RigidBody2D, Alive
 		}
         if (body is Mob mob)
         {
-            mob.Damage(1, LinearVelocity);
+            if (LinearVelocity.Length() > 100)
+            {
+                mob.Damage(1, LinearVelocity);
+            }
             ApplyCentralImpulse((mob.Position - Position).Normalized() * -100);
         }
         Global.Instance.emphasis_shake(GetTree());
@@ -32,6 +35,7 @@ public abstract partial class Mob : RigidBody2D, Alive
     {
         this.QueueFree(); // Add potential animation and sound here
         Global.Instance.money += money_drop + Global.Instance.current_items.Count(o=>o=="Hemonomics");
+        Funcs.damage_number(wizard.UI, wizard.UI.GetNode<Control>("Money").Position, money_drop);
     }
 	public override void _Ready()
 	{
@@ -40,6 +44,15 @@ public abstract partial class Mob : RigidBody2D, Alive
         ContactMonitor = true;
         MaxContactsReported = 5;
 	}
+
+    public override void _Process(double delta)
+    {
+        base._Process(delta);
+        if (Position.Length() > 10000)
+        {
+            die();
+        }
+    }
 
 
 }

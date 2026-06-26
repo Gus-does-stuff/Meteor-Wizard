@@ -47,7 +47,7 @@ size_flags_vertical = 3
 expand_mode = 1
 stretch_mode = 5
 
-[node name="Leave" type="Button" parent="VBoxContainer" unique_id=1805547245]
+[node name="Leave" type="Button" parent="VBoxContainer" unique_id=1805547245 groups=["Buttons"]]
 layout_mode = 2
 disabled = true
 text = "Fuck up that Goblin!"

@@ -27,6 +27,10 @@ window/size/mode=2
 
 project/assembly_name="Meteor Wizard"
 
+[global_group]
+
+Buttons="Here there be buttons"
+
 [gui]
 
 theme/custom="uid://mbsg4xqnedxi"

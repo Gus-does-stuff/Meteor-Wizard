@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://igd4y87kuy7t"]
+
+[ext_resource type="Script" uid="uid://c1g5j0drt1ma4" path="res://RollingGoblin.cs" id="1_pr5g8"]
+[ext_resource type="Texture2D" uid="uid://de8o0qvpcfmtg" path="res://Mobs/Rolling Goblin.png" id="2_pr5g8"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_pr5g8"]
+bounce = 82.4
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_pr5g8"]
+radius = 65.0
+
+[node name="Rolling Goblin" type="RigidBody2D" unique_id=987394215]
+mass = 0.5
+physics_material_override = SubResource("PhysicsMaterial_pr5g8")
+script = ExtResource("1_pr5g8")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1402970524]
+scale = Vector2(2.15, 2.15)
+texture = ExtResource("2_pr5g8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1777288813]
+position = Vector2(1, -1)
+shape = SubResource("CircleShape2D_pr5g8")
+
+[node name="health" type="ProgressBar" parent="." unique_id=1922284887]
+modulate = Color(1, 0, 0, 1)
+offset_left = -33.0
+offset_top = -81.0
+offset_right = 32.0
+offset_bottom = -59.0
+max_value = 10.0
+value = 10.0

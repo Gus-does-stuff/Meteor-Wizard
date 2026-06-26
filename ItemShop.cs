@@ -19,7 +19,7 @@ public partial class ItemShop : HBoxContainer
 			Control item_slot = GetNode<Control>("Item" + (i+1).ToString());
 			item_slot.GetNode<Label>("Name").Text = items[i];
 			item_slot.GetNode<TextureRect>("TextureRect").TooltipText = Global.Instance.item_descriptions[item_indices[i]];
-			item_slot.GetNode<Label>("Price").Text = rng.RandiRange(100, 250).ToString();
+			item_slot.GetNode<Label>("Price").Text = (rng.RandiRange(25, 50) * (Global.Instance.wave + 1)).ToString();
 			item_slot.GetNode<TextureRect>("TextureRect").Texture = ResourceLoader.Load<Texture2D>("res://Icons/Items/" + items[i] + ".png");
 		}
 	}

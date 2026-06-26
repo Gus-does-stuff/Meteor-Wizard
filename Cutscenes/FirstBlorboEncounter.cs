@@ -6,6 +6,8 @@ public partial class FirstBlorboEncounter : Control
 	// Called when the node enters the scene tree for the first time.
 	public override async void _Ready()
 	{
+		Global.Instance.connect_button_sounds();
+		
 		TextureRect window = GetNode<TextureRect>("VBoxContainer/Control/cutscene_window");
 		RichTextLabel subtitles = GetNode<RichTextLabel>("VBoxContainer/subtitle_window");
 		TextureRect background = GetNode<TextureRect>("VBoxContainer/Control/cutscene_background");

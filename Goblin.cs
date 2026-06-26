@@ -25,6 +25,7 @@ public partial class Goblin : Mob
 	public override void _Ready()	
     {
         base._Ready();
+		money_drop = 5;
 		health = 10;
 		damage = 3;
 
@@ -57,6 +58,7 @@ public partial class Goblin : Mob
     public override void _PhysicsProcess(double delta)
     {
 		base._PhysicsProcess(delta);
+		Rotation = 0;
 		switch(state)
 		{
 			case "Recovering":

@@ -45,12 +45,12 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Run it!" type="Button" parent="Main/VBoxContainer" unique_id=1155793070]
+[node name="Run it!" type="Button" parent="Main/VBoxContainer" unique_id=1155793070 groups=["Buttons"]]
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
 text = "Play Game"
 
-[node name="Keep Going" type="Button" parent="Main/VBoxContainer" unique_id=1863981122]
+[node name="Keep Going" type="Button" parent="Main/VBoxContainer" unique_id=1863981122 groups=["Buttons"]]
 visible = false
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
@@ -80,7 +80,7 @@ size_flags_horizontal = 4
 size_flags_vertical = 0
 texture = ExtResource("3_ytr4m")
 
-[node name="Button" type="Button" parent="TitleScreen/VBoxContainer" unique_id=1707178304]
+[node name="Button" type="Button" parent="TitleScreen/VBoxContainer" unique_id=1707178304 groups=["Buttons"]]
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
 text = "START"

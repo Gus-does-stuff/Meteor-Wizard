@@ -80,7 +80,12 @@ layout_mode = 2
 text = "Placeholder"
 horizontal_alignment = 1
 
-[node name="Equip" type="Button" parent="VBox/HBoxContainer/Abilities/Orb" unique_id=1090287509]
+[node name="Price" type="Label" parent="VBox/HBoxContainer/Abilities/Orb" unique_id=88360789]
+layout_mode = 2
+text = "Price"
+horizontal_alignment = 1
+
+[node name="Equip" type="Button" parent="VBox/HBoxContainer/Abilities/Orb" unique_id=1090287509 groups=["Buttons"]]
 layout_mode = 2
 text = "Get this orb?"
 
@@ -109,7 +114,12 @@ layout_mode = 2
 text = "Placeholder"
 horizontal_alignment = 1
 
-[node name="Equip" type="Button" parent="VBox/HBoxContainer/Abilities/Space Ability" unique_id=1910591498]
+[node name="Price" type="Label" parent="VBox/HBoxContainer/Abilities/Space Ability" unique_id=1472082442]
+layout_mode = 2
+text = "Price"
+horizontal_alignment = 1
+
+[node name="Equip" type="Button" parent="VBox/HBoxContainer/Abilities/Space Ability" unique_id=1910591498 groups=["Buttons"]]
 layout_mode = 2
 text = "Get this ability?"
 
@@ -138,7 +148,12 @@ layout_mode = 2
 text = "Placeholder"
 horizontal_alignment = 1
 
-[node name="Equip" type="Button" parent="VBox/HBoxContainer/Abilities/Shift Ability" unique_id=1894455912]
+[node name="Price" type="Label" parent="VBox/HBoxContainer/Abilities/Shift Ability" unique_id=1064349523]
+layout_mode = 2
+text = "Price"
+horizontal_alignment = 1
+
+[node name="Equip" type="Button" parent="VBox/HBoxContainer/Abilities/Shift Ability" unique_id=1894455912 groups=["Buttons"]]
 layout_mode = 2
 text = "Get this ability?"
 
@@ -189,7 +204,7 @@ autowrap_mode = 3
 layout_mode = 2
 horizontal_alignment = 1
 
-[node name="Equip" type="Button" parent="VBox/HBoxContainer/Items/ItemShop/Item1" unique_id=1757380170]
+[node name="Equip" type="Button" parent="VBox/HBoxContainer/Items/ItemShop/Item1" unique_id=1757380170 groups=["Buttons"]]
 layout_mode = 2
 text = "Get this item?"
 
@@ -220,7 +235,7 @@ autowrap_mode = 3
 layout_mode = 2
 horizontal_alignment = 1
 
-[node name="Equip" type="Button" parent="VBox/HBoxContainer/Items/ItemShop/Item2" unique_id=1292471741]
+[node name="Equip" type="Button" parent="VBox/HBoxContainer/Items/ItemShop/Item2" unique_id=1292471741 groups=["Buttons"]]
 layout_mode = 2
 text = "Get this item?"
 
@@ -251,7 +266,7 @@ autowrap_mode = 3
 layout_mode = 2
 horizontal_alignment = 1
 
-[node name="Equip" type="Button" parent="VBox/HBoxContainer/Items/ItemShop/Item3" unique_id=211235477]
+[node name="Equip" type="Button" parent="VBox/HBoxContainer/Items/ItemShop/Item3" unique_id=211235477 groups=["Buttons"]]
 layout_mode = 2
 text = "Get this item?"
 
@@ -290,7 +305,7 @@ layout_mode = 2
 [node name="Money" type="Label" parent="VBox/HBoxContainer/Items/HBoxContainer" unique_id=392737441]
 layout_mode = 2
 
-[node name="Leave" type="Button" parent="VBox/HBoxContainer/Items" unique_id=751224134]
+[node name="Leave" type="Button" parent="VBox/HBoxContainer/Items" unique_id=751224134 groups=["Buttons"]]
 layout_mode = 2
 size_flags_vertical = 8
 text = "Leave this place"

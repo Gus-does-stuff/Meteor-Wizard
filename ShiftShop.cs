@@ -12,12 +12,22 @@ public partial class ShiftShop : VBoxContainer
 		GetNode<Label>("Name").Text = ability;
 		GetNode<TextureRect>("TextureRect").Texture = ResourceLoader.Load<Texture2D>("res://Icons/Shift_Abilities/" + ability + ".png");
 		GetNode<TextureRect>("TextureRect").TooltipText = "Replaces current shift ability with:\n" + ability;
+		GetNode<Label>("Price").Text = (rng.RandiRange(2, 3) * (1 + Global.Instance.wave)).ToString();
 	}
 
 	public void get_ability()
 	{
-		Global.Instance.shift_ability = ability;
-		GetNode<Button>("Equip").Disabled = true;
-		GetNode<Button>("Equip").Text = "Equipped!";
+		if (Global.Instance.money >= GetNode<Label>("Price").Text.ToInt())
+		{
+			Global.Instance.shift_ability = ability;
+			Global.Instance.money -= GetNode<Label>("Price").Text.ToInt();
+			GetNode<Button>("Equip").Disabled = true;
+			GetNode<Button>("Equip").Text = "Ability Purchased!";
+		}
+		else
+		{
+			GetNode<Button>("Equip").Disabled = true;
+			GetNode<Button>("Equip").Text = "CARD DECLINED";
+		}
 	}
 }

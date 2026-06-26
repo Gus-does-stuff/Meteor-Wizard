@@ -12,12 +12,22 @@ public partial class OrbShop : VBoxContainer
 		GetNode<Label>("Name").Text = orb;
 		GetNode<TextureRect>("TextureRect").Texture = ResourceLoader.Load<Texture2D>("res://Icons/Orbs/" + orb + ".png");
 		GetNode<TextureRect>("TextureRect").TooltipText = "Replaces current orb with:\n" + orb + " Orb";
+		GetNode<Label>("Price").Text = (rng.RandiRange(2, 3) * (1 + Global.Instance.wave)).ToString();
 	}
 
 	public void get_orb()
 	{
-		Global.Instance.current_orb = orb;
-		GetNode<Button>("Equip").Disabled = true;
-		GetNode<Button>("Equip").Text = "Equipped!";
+		if (Global.Instance.money >= GetNode<Label>("Price").Text.ToInt())
+		{
+			Global.Instance.current_orb = orb;
+			Global.Instance.money -= GetNode<Label>("Price").Text.ToInt();
+			GetNode<Button>("Equip").Disabled = true;
+			GetNode<Button>("Equip").Text = "Orb Purchased!";
+		}
+		else
+		{
+			GetNode<Button>("Equip").Disabled = true;
+			GetNode<Button>("Equip").Text = "CARD DECLINED";
+		}
 	}
 }

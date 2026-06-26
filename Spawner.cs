@@ -13,7 +13,7 @@ public partial class Spawner : Timer
 	private RandomNumberGenerator rng;
 	private Node2D world;
 	private Wizard wizard;
-	public Array<int> spawn_queue = [0,0,0,0,1];
+	public Array<int> spawn_queue = [];
 	public Array<PackedScene> mob_list = [];
 	public int spawn_batch_size = 10;
 	public int base_node_count;
@@ -22,13 +22,26 @@ public partial class Spawner : Timer
 
     public override void _Ready()
     {
-		spawn_queue = Global.Instance.goblin_waves[Global.Instance.wave];
+		if (Global.Instance.wave >= Global.Instance.goblin_waves.Count)
+		{
+			for (int i = 0; i < Global.Instance.wave; i++)
+			{
+				spawn_queue.Add(0);
+				spawn_queue.Add(0);
+				spawn_queue.Add(0);
+				spawn_queue.Add(1);
+				spawn_queue.Add(2);
+				spawn_queue.Add(2);
+			}
+		}
+		else {spawn_queue = Global.Instance.goblin_waves[Global.Instance.wave];}
         base._Ready();
 		rng = new RandomNumberGenerator();
 		world = GetParent<Node2D>();
 		wizard = world.GetNode<Wizard>("Wizard");
 		mob_list.Add(ResourceLoader.Load<PackedScene>("goblin.tscn"));
 		mob_list.Add(ResourceLoader.Load<PackedScene>("goblin_beef.tscn"));
+		mob_list.Add(ResourceLoader.Load<PackedScene>("rolling_goblin.tscn"));
 		base_node_count = world.GetChildCount();
     }
 
