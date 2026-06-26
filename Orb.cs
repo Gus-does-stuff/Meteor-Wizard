@@ -62,6 +62,8 @@ public partial class Orb : RigidBody2D
 		}
 		hit_sound.PitchScale = rng.RandfRange(0.5f, 1.75f);
 		hit_sound.Play();
+		wizard.shake_screen();
+		Global.Instance.emphasis_shake(GetTree());
 	}
 
 	public void set_type(String orb_type)

@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://50i71x10meaw" path="res://SpaceShop.cs" id="4_fn3gv"]
 [ext_resource type="Script" uid="uid://33oekmgrmkkh" path="res://ShiftShop.cs" id="5_u8xvj"]
 [ext_resource type="Script" uid="uid://dfnly0umsglvh" path="res://ItemShop.cs" id="6_icixs"]
+[ext_resource type="AudioStream" uid="uid://cjg7gxmis4aox" path="res://Music and Sound/Shop Tunes.wav" id="8_l7sqa"]
 
 [node name="Upgrades" type="Control" unique_id=743062953]
 layout_mode = 3
@@ -315,6 +316,10 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 color = Color(0, 0, 0, 1)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=432490826]
+stream = ExtResource("8_l7sqa")
+autoplay = true
 
 [connection signal="button_up" from="VBox/HBoxContainer/Abilities/Orb/Equip" to="VBox/HBoxContainer/Abilities/Orb" method="get_orb"]
 [connection signal="button_up" from="VBox/HBoxContainer/Abilities/Space Ability/Equip" to="VBox/HBoxContainer/Abilities/Space Ability" method="get_ability"]

@@ -1,6 +1,7 @@
 using Godot;
 using Godot.Collections;
 using System;
+using System.Threading.Tasks;
 
 public partial class Funcs : Node
 {
@@ -13,4 +14,5 @@ public partial class Funcs : Node
         effect.Position = position;
         parent.AddChild(effect);
     }
+
 }

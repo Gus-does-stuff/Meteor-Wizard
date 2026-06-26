@@ -9,6 +9,7 @@ public partial class MainShop : Control
 		GetNode<ColorRect>("Vignette").Visible = true;
 		Tween fade_out_tween = CreateTween();
 		fade_out_tween.TweenProperty(GetNode<ColorRect>("Vignette"), "color:a", 0f, 1f);
+		Global.Instance.wave += 1;
 	}
 
 	public async void leave()

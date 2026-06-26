@@ -7,7 +7,7 @@ public partial class Global : Node
 	public String next_scene = "Arena.tscn";
 	public String current_orb = "Bouncy";
 	public Array<String> orbs = ["Bouncy", "Massive", "Fast"];
-	public Array<String> current_items = ["Lead Tipped Boots"]; // For testing
+	public Array<String> current_items = []; // For testing
 	public Array<String> items = 
 		[
 			"Prickly Orb", // Done!
@@ -36,6 +36,12 @@ public partial class Global : Node
 	public Array<String> shift_abilities = ["Dash Away", "Dash Toward", "Shield"];
 	public float health = 100;
 	public int money = 1000;
+	public int wave = 0;
+	public Array<Array<int>> goblin_waves = [
+		[0],
+		[1,0,0],
+		[]
+	];
 
 	public static Global Instance { get; private set; }
 
@@ -43,4 +49,11 @@ public partial class Global : Node
 	{
 		Instance = this;
 	}
+
+	public async void emphasis_shake(SceneTree scene_tree)
+    {
+        Engine.TimeScale = 0.4f;
+        await ToSignal(scene_tree.CreateTimer(0.1f, true, false, true), SceneTreeTimer.SignalName.Timeout);
+		Engine.TimeScale = 1.0f;
+    }
 }

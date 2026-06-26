@@ -50,11 +50,11 @@ custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
 text = "Play Game"
 
-[node name="Arena" type="Button" parent="Main/VBoxContainer" unique_id=1863981122]
+[node name="Keep Going" type="Button" parent="Main/VBoxContainer" unique_id=1863981122]
 visible = false
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
-text = "Endless"
+text = "Restart from last wave"
 
 [node name="TitleScreen" type="Control" parent="." unique_id=2141000085]
 layout_mode = 1
@@ -97,5 +97,5 @@ mouse_filter = 2
 color = Color(0.33333334, 0.18039216, 0.023529412, 1)
 
 [connection signal="button_up" from="Main/VBoxContainer/Run it!" to="Main" method="_on_run_it_button_up"]
-[connection signal="button_up" from="Main/VBoxContainer/Arena" to="Main" method="_on_arena_button_up"]
+[connection signal="button_up" from="Main/VBoxContainer/Keep Going" to="Main" method="_on_arena_button_up"]
 [connection signal="button_up" from="TitleScreen/VBoxContainer/Button" to="TitleScreen" method="_on_start_game"]

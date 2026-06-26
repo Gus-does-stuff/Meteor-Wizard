@@ -13,22 +13,22 @@ public partial class Spawner : Timer
 	private RandomNumberGenerator rng;
 	private Node2D world;
 	private Wizard wizard;
-	public Array<int> spawn_queue = [0];
+	public Array<int> spawn_queue = [0,0,0,0,1];
 	public Array<PackedScene> mob_list = [];
 	public int spawn_batch_size = 10;
-	public Godot.Vector2 spawn_location;
 	public int base_node_count;
 	[Signal]
 	public delegate void AllMobsDefeatedEventHandler();
 
     public override void _Ready()
     {
+		spawn_queue = Global.Instance.goblin_waves[Global.Instance.wave];
         base._Ready();
 		rng = new RandomNumberGenerator();
 		world = GetParent<Node2D>();
 		wizard = world.GetNode<Wizard>("Wizard");
-		spawn_location = Godot.Vector2.One.Rotated(rng.RandfRange(0, Mathf.Pi*2));
 		mob_list.Add(ResourceLoader.Load<PackedScene>("goblin.tscn"));
+		mob_list.Add(ResourceLoader.Load<PackedScene>("goblin_beef.tscn"));
 		base_node_count = world.GetChildCount();
     }
 
@@ -42,7 +42,7 @@ public partial class Spawner : Timer
 			int j = spawn_queue[spawn_queue.Count-1];
 			spawn_queue.RemoveAt(spawn_queue.Count-1);
 			Mob mob = mob_list[j].Instantiate<Mob>();
-			mob.Position = spawn_location + Godot.Vector2.One * (rng.RandfRange(-spawn_radius, spawn_radius));
+			mob.Position = spawn_radius * Godot.Vector2.One.Rotated(rng.RandfRange(0, Mathf.Pi*2));
 			world.AddChild(mob);
 			
 		}

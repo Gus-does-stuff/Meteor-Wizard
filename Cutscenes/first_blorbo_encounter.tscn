@@ -34,18 +34,18 @@ offset_bottom = 4.0
 grow_horizontal = 2
 grow_vertical = 2
 expand_mode = 1
-stretch_mode = 4
+stretch_mode = 5
 
 [node name="cutscene_window" type="TextureRect" parent="VBoxContainer/Control" unique_id=564680392]
-layout_mode = 0
-offset_top = 4.0
-offset_right = 1152.0
-offset_bottom = 544.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_vertical = 3
 expand_mode = 1
-stretch_mode = 4
+stretch_mode = 5
 
 [node name="Leave" type="Button" parent="VBoxContainer" unique_id=1805547245]
 layout_mode = 2

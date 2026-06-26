@@ -24,6 +24,8 @@ public abstract partial class Mob : RigidBody2D, Alive
             mob.Damage(1, LinearVelocity);
             ApplyCentralImpulse((mob.Position - Position).Normalized() * -100);
         }
+        Global.Instance.emphasis_shake(GetTree());
+        wizard.shake_screen();
     }
 
     public void die()

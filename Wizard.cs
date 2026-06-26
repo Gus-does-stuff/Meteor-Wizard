@@ -21,6 +21,15 @@ public partial class Wizard : RigidBody2D, Alive
 	private TextureProgressBar shift_ability;
 	private TextureProgressBar space_ability;
 
+	private float shake_decay_rate = 200f;
+	private float shake_speed = 100f;
+	private float shake_strength = 100f;
+	private float noise_i = 0.0f;
+	private float shake_velocity = 0.0f;
+	private Camera2D camera;
+	private FastNoiseLite noise = new FastNoiseLite();
+
+
 	public void Damage(float damage)
 	{
 		Global.Instance.health -= damage;
@@ -55,6 +64,7 @@ public partial class Wizard : RigidBody2D, Alive
 			item_icon.TooltipText = Global.Instance.current_items[i] + "\n" + Global.Instance.item_descriptions[Global.Instance.items.IndexOf(Global.Instance.current_items[i])];
 			UI.GetNode<Control>("Items").AddChild(item_icon);
 		}
+		camera = GetNode<Camera2D>("Camera2D");
 		
 	}
 
@@ -70,10 +80,18 @@ public partial class Wizard : RigidBody2D, Alive
 		GetTree().ChangeSceneToPacked(next);
 	}
 
+	public void shake_screen()
+	{
+		shake_velocity = shake_strength;
+	}
+
     public override void _Process(double delta) // For visual stuff
     {
         base._Process(delta);
 		UI.GetNode<Label>("Money").Text = Global.Instance.money.ToString() + " Dollaridoos";
+		camera.Offset = new Vector2(noise.GetNoise2D(1, noise_i), noise.GetNoise2D(100, noise_i)) * shake_velocity;
+		noise_i += (float)delta*shake_speed;
+		shake_velocity = Mathf.MoveToward(shake_velocity, 0, shake_decay_rate * (float)delta);
     }
 
 	public override void _PhysicsProcess(double delta)
@@ -113,7 +131,7 @@ public partial class Wizard : RigidBody2D, Alive
 				};
 				for (int i = 0; i < entities.Count; i++)
 				{
-					if (entities[i] is RigidBody2D entity)
+					if (entities[i] is RigidBody2D entity && ! (entities[i] is Wizard))
 					{
 						entity.LinearVelocity = (entity.Position - this.Position).Normalized() * 1000;
 					}
