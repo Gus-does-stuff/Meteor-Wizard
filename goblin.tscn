@@ -6,6 +6,10 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_1c2t3"]
 radius = 31.400637
 
+[sub_resource type="Curve" id="Curve_shr5t"]
+_data = [Vector2(0, 0), 0.0, 1.0, 0, 1, Vector2(1, 1), 1.0, 0.0, 1, 0]
+point_count = 2
+
 [node name="Goblin" type="RigidBody2D" unique_id=1263925967]
 gravity_scale = 0.0
 angular_damp = 1000.0
@@ -29,5 +33,8 @@ max_value = 10.0
 value = 10.0
 
 [node name="Charge Indicator" type="Line2D" parent="." unique_id=1664528403]
+width = 100.0
+width_curve = SubResource("Curve_shr5t")
+default_color = Color(0.6627451, 0, 0, 0.8117647)
 
 [connection signal="body_entered" from="." to="." method="hit"]
