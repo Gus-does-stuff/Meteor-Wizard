@@ -5,7 +5,7 @@ public partial class MainMenu : Control
 {
 	public void _on_run_it_button_up()
 	{
-		GetParent<Menu>().fade_out("res://FirstBlorboEncounter.tscn");
+		GetParent<Menu>().fade_out("res://Cutscenes/FirstBlorboEncounter.cs");
 	}
 	public void _on_arena_button_up()
 	{
