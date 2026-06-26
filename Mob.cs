@@ -9,25 +9,21 @@ public abstract partial class Mob : RigidBody2D, Alive
 	public float health = 1;
 	[Export]
 	public int damage = 1;
-	[Export]
-	public float speed = 1;
-    [Export]
-    public float acceletation = 1;
-	[Export]
-	public float spawn_chance = 0.1f;
     public int money_drop = 1;
 	public Wizard wizard;
-	// Called when the node enters the scene tree for the first time.
-    public abstract void Behaviour();
-    public abstract void Entry();
     public abstract void Damage(float damage, Vector2 velocity);
     public void hit(Node body)
     {
 		if (body is Wizard)
 		{
 			wizard.Damage(damage);
-			LinearVelocity = (wizard.Position - Position).Normalized() * -500;
+            ApplyCentralImpulse((wizard.Position - Position).Normalized() * -500);
 		}
+        if (body is Mob mob)
+        {
+            mob.Damage(1, LinearVelocity);
+            ApplyCentralImpulse((mob.Position - Position).Normalized() * -100);
+        }
     }
 
     public void die()
@@ -40,26 +36,8 @@ public abstract partial class Mob : RigidBody2D, Alive
 		wizard = GetParent().GetNode<Wizard>("Wizard");
         BodyEntered += hit;
         ContactMonitor = true;
-        MaxContactsReported = 3;
-        Entry();
+        MaxContactsReported = 5;
 	}
 
-    // Called every frame. 'delta' is the elapsed time since the previous frame.
-    public override void _PhysicsProcess(double delta)
-    {
-        base._PhysicsProcess(delta);
-        Vector2 wizard_direction = wizard.Position - Position;
-        LinearVelocity += wizard_direction.Normalized() * speed * (float)delta;
-        if(LinearVelocity.Length() >= speed)
-        {
-            LinearVelocity -= LinearVelocity * (float)delta * 0.7f;
-        }
-        
-    }
 
-	public override void _Process(double delta)
-	{
-		Vector2 wizard_direction = wizard.Position - Position;
-        Behaviour();
-	}
 }

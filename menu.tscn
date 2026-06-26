@@ -47,9 +47,10 @@ grow_vertical = 2
 [node name="Run it!" type="Button" parent="Main/VBoxContainer" unique_id=1155793070]
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
-text = "Campaign"
+text = "Play Game"
 
 [node name="Arena" type="Button" parent="Main/VBoxContainer" unique_id=1863981122]
+visible = false
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
 text = "Endless"

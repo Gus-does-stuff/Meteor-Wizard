@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://cvbyb6n8qxn3m"]
+
+[ext_resource type="Script" uid="uid://bbrp7gxrxk58a" path="res://BlorbosOrbs.cs" id="1_wnsrh"]
+[ext_resource type="Texture2D" uid="uid://b0yedt5c1vk0d" path="res://Assets/Shop Cart.png" id="2_k3i7s"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1c2t3"]
+size = Vector2(493, 251)
+
+[node name="Blorbos Orbs" type="Area2D" unique_id=434621858]
+monitoring = false
+script = ExtResource("1_wnsrh")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1379789373]
+position = Vector2(4.5, -1.5)
+shape = SubResource("RectangleShape2D_1c2t3")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=181177858]
+scale = Vector2(2, 2)
+texture = ExtResource("2_k3i7s")
+
+[node name="Dialogue Box" type="RichTextLabel" parent="." unique_id=970758694]
+custom_minimum_size = Vector2(400, 0)
+offset_left = -106.0
+offset_top = -274.0
+offset_right = 294.0
+offset_bottom = -234.0
+bbcode_enabled = true
+text = "[font_size=30]I gotta get"
+fit_content = true
+scroll_active = false
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

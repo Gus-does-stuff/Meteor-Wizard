@@ -30,9 +30,9 @@ public partial class Global : Node
 			"+1 dollaridoos dropped on kill",
 			"Heal 20% Health"
 		];
-	public String space_ability = "Attract Orb";
+	public String space_ability = "None";
 	public Array<String> space_abilities = ["Attract Orb", "Spin Orb"];
-	public String shift_ability = "Dash Away";
+	public String shift_ability = "None";
 	public Array<String> shift_abilities = ["Dash Away", "Dash Toward", "Shield"];
 	public float health = 100;
 	public int money = 1000;

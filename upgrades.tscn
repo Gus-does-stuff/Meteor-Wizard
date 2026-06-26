@@ -19,14 +19,15 @@ mouse_filter = 2
 script = ExtResource("1_ba88x")
 
 [node name="TextureRect" type="TextureRect" parent="." unique_id=2145241353]
+custom_minimum_size = Vector2(100, 150)
 layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
+anchors_preset = 10
+anchor_right = 1.0
 grow_horizontal = 2
 mouse_filter = 2
 texture = ExtResource("2_myp64")
-stretch_mode = 3
+expand_mode = 1
+stretch_mode = 5
 
 [node name="VBox" type="VBoxContainer" parent="." unique_id=1674283828]
 layout_mode = 1

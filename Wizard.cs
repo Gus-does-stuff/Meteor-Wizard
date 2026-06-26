@@ -86,9 +86,11 @@ public partial class Wizard : RigidBody2D, Alive
 		{
 			LinearVelocity -= LinearVelocity.Normalized() * Acceleration * (float)delta;
 		}
-		
-		shift_ability.Value -= delta;
-		space_ability.Value -= delta;
+		if (Global.Instance.shift_ability != "None")
+		{
+			shift_ability.Value -= delta;
+			space_ability.Value -= delta;
+		}
 		//GD.Print(Input.IsActionPressed("shift"));
 		if (shift_ability.Value <= 0 && Input.IsActionPressed("shift"))
 		{

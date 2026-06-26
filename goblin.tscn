@@ -1,20 +1,20 @@
 [gd_scene format=3 uid="uid://bet00p1ylurwk"]
 
 [ext_resource type="Script" uid="uid://co8bnlamuf1bi" path="res://Goblin.cs" id="1_u6mjv"]
-[ext_resource type="Texture2D" uid="uid://4bvhwnlrkm5i" path="res://Assets/Bob.png" id="2_vu5tg"]
+[ext_resource type="Texture2D" uid="uid://ct003xvb1m42a" path="res://Mobs/Goblin.png" id="2_u6mjv"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1c2t3"]
-radius = 22.0
+radius = 32.01562
 
 [node name="Goblin" type="RigidBody2D" unique_id=1263925967]
 gravity_scale = 0.0
 script = ExtResource("1_u6mjv")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=633023513]
-texture = ExtResource("2_vu5tg")
+texture = ExtResource("2_u6mjv")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=919882188]
-position = Vector2(1, -8)
+position = Vector2(1, -1)
 shape = SubResource("CircleShape2D_1c2t3")
 
 [node name="health" type="ProgressBar" parent="." unique_id=1579264551]

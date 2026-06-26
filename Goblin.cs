@@ -7,13 +7,14 @@ public partial class Goblin : Mob
 {
 	ProgressBar healthbar;
 	
-	public override void Entry()
-	{
+	public float speed = 100;
+	public float Friction = 1000;
+	public float Acceleration = 1000;
+    public override void _Ready()
+    {
+        base._Ready();
 		health = 10;
 		damage = 3;
-		speed = 100;
-		acceletation = 1000;
-		spawn_chance = 1f;
 
 		healthbar = GetNode<ProgressBar>("health");
 	}
@@ -30,9 +31,14 @@ public partial class Goblin : Mob
 		Funcs.damage_number(GetParent(), Position, Mathf.RoundToInt(damage));
     }
 
-    public override void Behaviour()
+    public override void _PhysicsProcess(double delta)
     {
-        
+        base._PhysicsProcess(delta);
+		ApplyCentralForce((wizard.Position - Position).Normalized() * Acceleration);
+		if(LinearVelocity.Length() >= speed)
+		{
+			LinearVelocity -= LinearVelocity.Normalized() * Friction * (float)delta;
+		}
     }
 
 }

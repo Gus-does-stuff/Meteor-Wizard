@@ -19,6 +19,10 @@ config/icon="res://icon.svg"
 
 Global="*uid://b1x5tp7fbgirt"
 
+[display]
+
+window/size/mode=2
+
 [dotnet]
 
 project/assembly_name="Meteor Wizard"

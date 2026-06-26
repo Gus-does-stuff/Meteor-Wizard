@@ -6,6 +6,8 @@ public partial class Orb : RigidBody2D
 {
 
 	private Wizard wizard;
+	private AudioStreamPlayer2D hit_sound;
+	private RandomNumberGenerator rng;
 	public float base_damage = 1;
 	public float base_speed = 1000;
 	public float slowdown = 1000;
@@ -22,12 +24,14 @@ public partial class Orb : RigidBody2D
 		((CircleShape2D)GetNode<CollisionShape2D>("Hitbox").Shape).Radius = 75*(1 + 0.2f*Global.Instance.current_items.Count(o=>o=="Big Orb"));
 		GetNode<Sprite2D>("Sprite2D").Scale = Vector2.One * 1.3f * (1 + 0.2f*Global.Instance.current_items.Count(o=>o=="Big Orb"));
 		trail = GetNode<Line2D>("Trail");
+		hit_sound = GetNode<AudioStreamPlayer2D>("Hit Sound");
+		rng = new RandomNumberGenerator();
 	}
 
     public override void _PhysicsProcess(double delta)
     {
         base._PhysicsProcess(delta);
-				if(LinearVelocity.Length() >= speed)
+		if(LinearVelocity.Length() >= speed)
 		{
 			LinearVelocity -= LinearVelocity.Normalized() * slowdown * (float)delta;
 		}
@@ -56,6 +60,8 @@ public partial class Orb : RigidBody2D
 		{
 			ApplyCentralImpulse((Position - wizard.Position).Normalized() * 1000 * Global.Instance.current_items.Count(o=>o=="Lead Tipped Boots"));
 		}
+		hit_sound.PitchScale = rng.RandfRange(0.5f, 1.75f);
+		hit_sound.Play();
 	}
 
 	public void set_type(String orb_type)

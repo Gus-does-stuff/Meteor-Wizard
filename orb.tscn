@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://dcpb5cxcef0kx" path="res://Orb.cs" id="1_xdlj8"]
 [ext_resource type="Texture2D" uid="uid://cbwb2kmu5t2wl" path="res://Assets/Normal Orb.png" id="2_2qvkr"]
 [ext_resource type="Texture2D" uid="uid://bdnwbykh1ysng" path="res://Assets/Orb AOE.png" id="3_2qvkr"]
+[ext_resource type="AudioStream" uid="uid://bp1s5h8uauxd3" path="res://Music and Sound/Orb Hit.wav" id="4_vx8ir"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_vx8ir"]
 radius = 75.0
@@ -46,5 +47,8 @@ width = 100.0
 width_curve = SubResource("Curve_2qvkr")
 default_color = Color(1, 0, 0, 1)
 gradient = SubResource("Gradient_2qvkr")
+
+[node name="Hit Sound" type="AudioStreamPlayer2D" parent="." unique_id=1493988111]
+stream = ExtResource("4_vx8ir")
 
 [connection signal="body_entered" from="." to="." method="_on_slam"]

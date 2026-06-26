@@ -1,20 +1,22 @@
 [gd_scene format=3 uid="uid://cbgtl28axmimt"]
 
+[ext_resource type="PackedScene" uid="uid://cvbyb6n8qxn3m" path="res://blorbos_orbs.tscn" id="1_8qske"]
 [ext_resource type="PackedScene" uid="uid://ctntb0x7eceqi" path="res://wizard.tscn" id="1_ml6qp"]
 [ext_resource type="PackedScene" uid="uid://dmmlpw7mpkkpt" path="res://orb.tscn" id="2_8qske"]
 [ext_resource type="PackedScene" uid="uid://drc5o730yjrjj" path="res://rope.tscn" id="3_tu31c"]
 [ext_resource type="Script" uid="uid://ctju6nsjwf3jr" path="res://Spawner.cs" id="4_u21bi"]
 [ext_resource type="PackedScene" uid="uid://bet00p1ylurwk" path="res://goblin.tscn" id="5_18q8f"]
 [ext_resource type="Script" uid="uid://cxuri3y0i2tdx" path="res://Border.cs" id="6_1qmqq"]
-[ext_resource type="Texture2D" uid="uid://nliv5ax08l40" path="res://icon.svg" id="7_8qske"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_lquwl"]
 bounce = 5.75
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_1c2t3"]
-size = Vector2(172, 316)
-
 [node name="Arena" type="Node2D" unique_id=1235424377]
+
+[node name="Blorbos Orbs" parent="." unique_id=434621858 instance=ExtResource("1_8qske")]
+position = Vector2(1277, 3)
+outside_map = Vector2(3218, -17)
+inside_map = Vector2(2068, 13)
 
 [node name="Wizard" parent="." unique_id=2005119280 instance=ExtResource("1_ml6qp")]
 powers = Array[String](["Bouncy Orb"])
@@ -46,23 +48,6 @@ points = PackedVector2Array(10, -2631, 2590, -1273, 2635, 1804, 101, 3207, -2479
 closed = true
 width = 50.0
 
-[node name="Shop" type="Area2D" parent="." unique_id=493612148]
-
-[node name="Label" type="Label" parent="Shop" unique_id=1462120779]
-offset_left = 2145.0
-offset_top = -105.0
-offset_right = 2199.0
-offset_bottom = -87.0
-text = "SHOP"
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Shop" unique_id=1760762414]
-position = Vector2(2168, 6)
-shape = SubResource("RectangleShape2D_1c2t3")
-
-[node name="Sprite2D" type="Sprite2D" parent="Shop" unique_id=646972443]
-position = Vector2(2169, 6)
-texture = ExtResource("7_8qske")
-
+[connection signal="AllMobsDefeated" from="Spawner" to="Blorbos Orbs" method="_on_mobs_killed"]
 [connection signal="timeout" from="Spawner" to="Spawner" method="every_second"]
 [connection signal="body_exited" from="Area2D" to="Area2D" method="_on_body_exited"]
-[connection signal="body_entered" from="Shop" to="Area2D" method="on_shop_entered"]
